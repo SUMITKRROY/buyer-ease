@@ -1,0 +1,485 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/header_container"></include>
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:background="?attr/colorPrimary"
+
+                android:textAlignment="center"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<include layout="@layout/tool_bar" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@drawable/toolbar_dropshadow" />
+        -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/homeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/poSyncContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--get data or how to use-->
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/getDataCardContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_8bottom"
+                            android:layout_marginLeft="@dimen/margin_8left"
+                            android:layout_marginRight="@dimen/margin_8right"
+                            android:layout_marginTop="@dimen/margin_8top"
+                            card_view:cardCornerRadius="1dp">
+
+                            <LinearLayout
+                                android:id="@+id/getDataLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:id="@+id/getDataIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left|top"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_file_download_black_24dp" />
+
+                                <LinearLayout
+                                    android:id="@+id/getDataDetails"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/margin_8left"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txtTitleGet"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="GET DATA"
+
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_14" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_8top"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <CheckBox
+                                            android:id="@+id/chkGetMasterData"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Master Data"
+                                            android:textColor="@color/colorBlack" />
+
+                                        <CheckBox
+                                            android:id="@+id/chkGetInspectionData"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/margin_8top"
+                                            android:text="Quality Inspection"
+                                            android:textColor="@color/colorBlack" />
+
+                                    </LinearLayout>
+
+                                    <RelativeLayout
+                                        android:id="@+id/btnContainer"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="16dp"
+                                        android:layout_marginLeft="12dp"
+                                        android:layout_marginRight="12dp"
+                                        android:layout_marginTop="16dp">
+
+                                        <Button
+                                            android:id="@+id/getDataSubmit"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/btn_background"
+                                            android:text="GET DATA"
+                                            android:textColor="@drawable/btn_effect_text_color"
+                                            android:textSize="@dimen/text_normal_12" />
+
+                                        <ProgressBar
+                                            android:id="@+id/getDataProgressBar"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:visibility="gone" />
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <!--send data or how to use-->
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/sendDataCardContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_8bottom"
+                            android:visibility="gone"
+                            android:layout_marginLeft="@dimen/margin_8left"
+                            android:layout_marginRight="@dimen/margin_8right"
+                            android:layout_marginTop="@dimen/margin_8top"
+                            card_view:cardCornerRadius="1dp">
+
+                            <LinearLayout
+                                android:id="@+id/userSendDataLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:orientation="horizontal"
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:id="@+id/userSendIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left|top"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_publish_black_24dp" />
+
+                                <LinearLayout
+                                    android:id="@+id/sendDataDetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+
+                                    android:layout_marginLeft="@dimen/margin_8left"
+                                    android:layout_weight="1"
+
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txtTitleSendData"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SEND DATA"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_14" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_16top"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/btnSendContainer"
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="16dp"
+                                            android:layout_marginLeft="12dp"
+                                            android:layout_marginRight="12dp"
+                                            android:layout_marginTop="16dp">
+
+                                            <Button
+                                                android:id="@+id/sendSubmit"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/btn_background"
+                                                android:text="SEND DATA"
+                                                android:textColor="@drawable/btn_effect_text_color"
+                                                android:textSize="@dimen/text_normal_12" />
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/styleSyncContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--get data or how to use-->
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/getStyleDataCardContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_8bottom"
+                            android:layout_marginLeft="@dimen/margin_8left"
+                            android:layout_marginRight="@dimen/margin_8right"
+                            android:layout_marginTop="@dimen/margin_8top"
+                            card_view:cardCornerRadius="1dp">
+
+                            <LinearLayout
+                                android:id="@+id/getStyleDataLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:id="@+id/getStyleDataIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left|top"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_file_download_black_24dp" />
+
+                                <LinearLayout
+                                    android:id="@+id/getStyleDataDetails"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/margin_8left"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txtTitleStyleGet"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="GET STYLE DATA"
+
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_14" />
+
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/btnStyleGetContainer"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="16dp"
+                                        android:layout_marginLeft="12dp"
+                                        android:layout_marginRight="12dp"
+                                        android:layout_marginTop="16dp">
+
+                                        <Button
+                                            android:id="@+id/getStyleDataSubmit"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/btn_background"
+                                            android:text="GET STYLE DATA"
+                                            android:textColor="@drawable/btn_effect_text_color"
+                                            android:textSize="@dimen/text_normal_12" />
+
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <!--send data or how to use-->
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/sendStyleDataCardContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_8bottom"
+                            android:layout_marginLeft="@dimen/margin_8left"
+                            android:layout_marginRight="@dimen/margin_8right"
+                            android:layout_marginTop="@dimen/margin_8top"
+                            card_view:cardCornerRadius="1dp">
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/userSendStyleDataLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:orientation="horizontal"
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:id="@+id/userSendStyleIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left|top"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_publish_black_24dp" />
+
+                                <LinearLayout
+                                    android:id="@+id/sendStyleDataDetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+
+                                    android:layout_marginLeft="@dimen/margin_8left"
+                                    android:layout_weight="1"
+
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txtTitleSendStyleData"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SEND STYLE DATA"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_14" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_16top"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/btnSendStyleContainer"
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="16dp"
+                                            android:layout_marginLeft="12dp"
+                                            android:layout_marginRight="12dp"
+                                            android:layout_marginTop="16dp">
+
+                                            <Button
+                                                android:id="@+id/sendStyleSubmit"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/btn_background"
+                                                android:text="SEND STYLE DATA"
+                                                android:textColor="@drawable/btn_effect_text_color"
+                                                android:textSize="@dimen/text_normal_12" />
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/syncContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/syncSectionIndicatorContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:background="@color/colorTeal"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp">
+
+
+                            <TextView
+                                android:id="@+id/txtSyncSection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
+                                android:singleLine="true"
+                                android:text="Sync Report"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_normal_14" />
+
+
+                            <TextView
+                                android:id="@+id/txtSyncCountSection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:layout_toRightOf="@+id/txtSyncSection"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_normal_14" />
+
+                        </RelativeLayout>
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+
+                            android:background="@color/white">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <!-- to make nonscrollview     com.util.NonscrollRecylerview-->
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:divider="@color/colorBlack"
+                                    android:scrollbars="vertical" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

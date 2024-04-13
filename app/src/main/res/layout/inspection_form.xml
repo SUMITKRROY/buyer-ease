@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/header_container"></include>
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:background="?attr/colorPrimary"
+
+                android:textAlignment="center"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/basicDetailContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/inspDtContainer"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:id="@+id/txtInspectionDate"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:padding="8dp"
+                                        android:singleLine="true"
+                                        android:text="12 Mar 2017"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_14" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/arrowLayoutDetail"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical">
+
+                                    <ImageView
+                                        android:id="@+id/expendArrowDetail"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_gravity="center"
+                                        android:alpha="0.54"
+                                        android:padding="8dp"
+                                        android:src="@drawable/ic_expand_less_black_24dp" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/task_details"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+                                        <TextView
+                                            android:id="@+id/txtCustomerLabel"
+                                            android:layout_width="90dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="Customer"
+                                            android:textColor="@color/text_secondary"
+                                            android:textSize="@dimen/text_small_10" />
+
+                                        <TextView
+                                            android:id="@+id/txtCustomer"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/margin_8left"
+                                            android:text="Winda"
+                                            android:textColor="@color/colorBlack"
+                                            android:textSize="@dimen/text_normal_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/layoutVendor"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <!--android:layout_marginTop="6dp"-->
+
+                                        <TextView
+                                            android:id="@+id/txtVendorLabel"
+                                            android:layout_width="90dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="Vendor"
+                                            android:textColor="@color/text_secondary"
+                                            android:textSize="@dimen/text_small_10" />
+
+                                        <TextView
+                                            android:id="@+id/txtVendor"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/margin_8left"
+                                            android:text="A R Printing and Packaging India Pvt. Ltd."
+                                            android:textColor="@color/colorBlack"
+                                            android:textSize="@dimen/text_normal_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/layoutQualityResource"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <!--android:layout_marginTop="6dp"-->
+
+                                        <TextView
+                                            android:id="@+id/txtQualityResourceLabel"
+                                            android:layout_width="90dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="Inspector"
+                                            android:textColor="@color/text_secondary"
+                                            android:textSize="@dimen/text_small_10" />
+
+                                        <TextView
+                                            android:id="@+id/txtQualityResource"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/margin_8left"
+                                            android:text="Vivek Saxena"
+                                            android:textColor="@color/colorBlack"
+                                            android:textSize="@dimen/text_normal_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/layoutActivity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <!--android:layout_marginTop="6dp"-->
+
+                                        <TextView
+                                            android:id="@+id/txtActivityLabel"
+                                            android:layout_width="90dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="Activity"
+                                            android:textColor="@color/text_secondary"
+                                            android:textSize="@dimen/text_small_10" />
+
+                                        <TextView
+                                            android:id="@+id/txtActivity"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/margin_8left"
+                                            android:text="FINAL Inspection"
+                                            android:textColor="@color/colorBlack"
+                                            android:textSize="@dimen/text_normal_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+                                            <!--android:layout_marginTop="6dp"-->
+
+                                            <TextView
+                                                android:id="@+id/txtLocationLabel"
+                                                android:layout_width="90dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="Location"
+                                                android:textColor="@color/text_secondary"
+                                                android:textSize="@dimen/text_small_10" />
+
+                                            <TextView
+                                                android:id="@+id/txtLocation"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="2dp"
+                                                android:gravity="center_vertical"
+                                                android:text=""
+                                                android:textColor="@color/colorBlack"
+                                                android:textSize="@dimen/text_normal_12" />
+
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/txtContactPersonLabel"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Vendor Representative"
+                                            android:textColor="@color/text_secondary"
+                                            android:textSize="@dimen/text_small_10" />
+
+                                        <EditText
+                                            android:id="@+id/vendorContactPerson"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/margin_8left"
+                                            android:textSize="@dimen/text_normal_12"
+
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/divider_under_line"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/inspectionDetailContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical">
+
+
+                            <TextView
+                                android:id="@+id/txtinspectionDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:singleLine="true"
+                                android:text="Inspection detail"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/text_normal_14" />
+
+                            <LinearLayout
+                                android:id="@+id/arrowLayoutInspectionDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical">
+
+                                <ImageView
+                                    android:id="@+id/expendArrowInspectionDetail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:alpha="0.54"
+                                    android:padding="8dp"
+                                    android:src="@drawable/ic_expand_less_black_24dp" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/inspectionDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="6dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtInspectionLevelLabel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Inspection Level"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtInspectionLevel"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:background="@drawable/red_border_background"
+                                        android:drawablePadding="8dp"
+                                        android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="8dp"
+                                        android:text="G-II"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtQualityLevelLabel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Quality Level Major"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtQualityLevel"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:background="@drawable/red_border_background"
+                                        android:drawablePadding="8dp"
+                                        android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="8dp"
+                                        android:text="AQL 2.5"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="6dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtQualityLevelMinorLabel"
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Quality Level Minor"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtQualityLevelMinor"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:background="@drawable/red_border_background"
+                                        android:drawablePadding="8dp"
+                                        android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="8dp"
+                                        android:text="AQL 2.5"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtTypeofInspectionLabel"
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Type of Inspection "
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtTypeofInspection"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:background="@drawable/red_border_background"
+                                        android:drawablePadding="8dp"
+                                        android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="8dp"
+                                        android:text="Pre Inspection"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtStatusLabel"
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Status"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtStatus"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:background="@drawable/red_border_background"
+                                        android:drawablePadding="8dp"
+                                        android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="8dp"
+                                        android:text="G-II"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8top">
+
+                            <RadioGroup
+                                android:id="@+id/radioGroup"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/radioReportLvl"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:enabled="false"
+                                    android:text="Report Level" />
+
+
+                                <RadioButton
+                                    android:id="@+id/radioMaterialLevel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="16dp"
+                                    android:enabled="false"
+                                    android:text="Material Level" />
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/divider_under_line"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_12left"
+                            android:layout_marginRight="@dimen/margin_12right"
+                            android:layout_marginTop="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="6dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtArrivalTimeLabel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Arrival Time"
+                                        android:textColor="@color/colorTeal"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtArrivalTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:drawableRight="@drawable/ic_perm_contact_calendar_black_18dp"
+                                        android:gravity="center_vertical"
+
+                                        android:text="00:00"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width=".5dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:background="@color/divider_under_line"></View>
+
+                                <LinearLayout
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_weight="1"
+
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtStartTimeLabel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Start Time"
+                                        android:textColor="@color/colorTeal"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtStartTimeLevel"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:drawableRight="@drawable/ic_perm_contact_calendar_black_18dp"
+                                        android:gravity="center_vertical"
+
+                                        android:text="00:00"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width=".5dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:background="@color/divider_under_line"></View>
+
+                                <LinearLayout
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_weight="1"
+
+                                    android:orientation="vertical">
+                                    <!--android:layout_marginTop="6dp"-->
+
+                                    <TextView
+                                        android:id="@+id/txtCompleteTimeLabel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Complete Time"
+                                        android:textColor="@color/colorTeal"
+                                        android:textSize="@dimen/text_small_10" />
+
+                                    <TextView
+                                        android:id="@+id/txtCompleteTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:drawableRight="@drawable/ic_perm_contact_calendar_black_18dp"
+                                        android:gravity="center_vertical"
+                                        android:text="00:00"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="@dimen/text_normal_12" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/poHdrRemarkContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Remark"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/text_normal_14" />
+
+                            <EditText
+                                android:id="@+id/editPoDetailRemark"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:background="@drawable/edit_background"
+                                android:gravity="top"
+                                android:minLines="5"
+                                android:textSize="@dimen/text_normal_12" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnGoToPoDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_12left"
+                            android:layout_marginRight="@dimen/margin_12right"
+                            android:layout_marginTop="24dp"
+                            android:background="@drawable/btn_background"
+                            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+                            android:text="Go To  PO Details"
+                            android:textColor="@drawable/btn_effect_text_color"
+
+                            />
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

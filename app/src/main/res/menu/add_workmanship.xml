@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto"
+
+    >
+    <item
+        android:id="@+id/submit"
+        android:iconTint="@color/white"
+        android:orderInCategory="1"
+        android:title="Done"
+        appcompat:showAsAction="always" />
+
+
+</menu>

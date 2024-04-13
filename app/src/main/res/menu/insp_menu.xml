@@ -1,0 +1,51 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto"
+
+    >
+    <item
+        android:id="@+id/submit"
+        android:iconTint="@color/white"
+        android:orderInCategory="1"
+        android:title="Sync"
+        appcompat:showAsAction="always" />
+    <item
+        android:id="@+id/space"
+        android:iconTint="@color/white"
+        android:orderInCategory="2"
+        android:title=""
+        appcompat:showAsAction="always" />
+    <item
+        android:id="@+id/submitRemove"
+        android:iconTint="@color/white"
+        android:orderInCategory="3"
+        android:title="Remove"
+        appcompat:showAsAction="always" />
+
+    <item
+        android:id="@+id/checkedAll"
+        android:iconTint="@color/white"
+        android:orderInCategory="4"
+        android:title="Checked All"
+        appcompat:showAsAction="never" />
+    <item
+        android:id="@+id/unCheckedAll"
+        android:iconTint="@color/white"
+        android:orderInCategory="5"
+        android:title="UnChecked"
+        appcompat:showAsAction="never" />
+
+    <item
+        android:id="@+id/openInspection"
+        android:iconTint="@color/white"
+        android:orderInCategory="6"
+        android:title="Open"
+        appcompat:showAsAction="never" />
+    <item
+        android:id="@+id/closeInspection"
+        android:iconTint="@color/white"
+        android:orderInCategory="7"
+        android:title="Closed"
+        appcompat:showAsAction="never" />
+
+
+</menu>

@@ -1,0 +1,40 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <dimen name="edit_text_normal">12sp</dimen>
+    <dimen name="text_normal_12">12sp</dimen>
+    <dimen name="text_small_10">10sp</dimen>
+    <dimen name="text_normal_14">14sp</dimen>
+
+    <dimen name="text_normal_18">18sp</dimen>
+
+    <dimen name="pic_width">92dp</dimen>
+    <dimen name="pic_height">92dp</dimen>
+
+    <dimen name="pic_middle_width">62dp</dimen>
+    <dimen name="pic_middle_height">62dp</dimen>
+
+    <dimen name="grid_spacing">10dp</dimen>
+
+
+    <dimen name="margin_left">16dp</dimen>
+    <dimen name="margin_right">16dp</dimen>
+    <dimen name="margin_bottom">16dp</dimen>
+    <dimen name="margin_top">16dp</dimen>
+    <dimen name="margin_24top">24dp</dimen>
+
+    <dimen name="margin_8left">8dp</dimen>
+    <dimen name="margin_8right">8dp</dimen>
+    <dimen name="margin_8bottom">8dp</dimen>
+    <dimen name="margin_8top">8dp</dimen>
+
+    <dimen name="margin_12left">12dp</dimen>
+    <dimen name="margin_12right">12dp</dimen>
+
+    <dimen name="margin_16top">16dp</dimen>
+
+    <dimen name="edit_hint_size">16sp</dimen>
+
+    <dimen name="tab_height">52dp</dimen>
+</resources>

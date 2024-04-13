@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8top"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtCodeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Item Ref"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+
+        <TextView
+            android:id="@+id/txtCriticalLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+
+
+            android:text="Target Date"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+        <TextView
+            android:id="@+id/txtMajorLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:text="Latest Delivery Date"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+        <TextView
+            android:id="@+id/txtMinorLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Ship via"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+
+
+    </LinearLayout>
+</LinearLayout>

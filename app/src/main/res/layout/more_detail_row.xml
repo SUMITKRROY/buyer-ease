@@ -1,0 +1,200 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/moreMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/morePo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text=" PO "
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/moreItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Item"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/packagingMeasurementLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="packaging Measurement"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/barCodeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="BarCode"
+            android:visibility="gone"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/digitalUploadedLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Digitals Uploaded"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/enclosuresUploadedLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:text="Enclosures Uploaded"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/taskReportsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Pending"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/measurementsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Measurements"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:visibility="gone"
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/samplePurposeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:text="Sample Purpose"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/overAllInspectionResultLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Over All Inspection Result"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/hologramNoLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="HologramNo"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

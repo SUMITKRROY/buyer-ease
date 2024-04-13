@@ -1,0 +1,123 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/cartonMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/cartonPo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text=" PO "
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/cartonItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Item"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/CartonLabel1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Packed"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <EditText
+            android:id="@+id/CartonPackedLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:gravity="center"
+            android:inputType="number"
+            android:padding="5dp"
+            android:text="Carton"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/AvalableLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="0"
+            android:clickable="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <View
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_under_line"></View>
+
+        <TextView
+            android:id="@+id/InspectedLabel1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Inspected"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+        <EditText
+            android:id="@+id/InspectedLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:gravity="center"
+            android:inputType="number"
+            android:padding="5dp"
+            android:text="Inspected"
+
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal_12" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

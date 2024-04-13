@@ -1,0 +1,602 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/PackingMeasurementDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/margin_8top"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/onSiteHdrLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Latest Delivery Date"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Ship via"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Order Quantity"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Available Quantity"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Accepted Quantity"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llItemQty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/txtDelivaryDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtShipVia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtOerderQty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="00.00"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAvlblQty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="00.00"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAcceptedQty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="00.00"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llItemQty1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/txtDelivaryDate1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="24-Mar-2021"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtShipVia1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Noida"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtOerderQty1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,400"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAvlblQty1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAcceptedQty1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llItemQty2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/txtDelivaryDate2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="24-Mar-2021"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtShipVia2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Noida"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtOerderQty2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,400"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAvlblQty2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAcceptedQty2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llItemQty3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/txtDelivaryDate3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="24-Mar-2021"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtShipVia3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Noida"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtOerderQty3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,400"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAvlblQty3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAcceptedQty3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llItemQty4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/txtDelivaryDate4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="24-Mar-2021"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtShipVia4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Noida"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtOerderQty4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,400"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAvlblQty4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAcceptedQty4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llItemQty5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/txtDelivaryDate5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="24-Mar-2021"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtShipVia5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Noida"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtOerderQty5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,400"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAvlblQty5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtAcceptedQty5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="5,200"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/onSiteRemarkContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remark"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_14" />
+
+                <EditText
+                    android:id="@+id/editItemQtyRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_background"
+                    android:gravity="top"
+                    android:minLines="5"
+                    android:textSize="@dimen/text_normal_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

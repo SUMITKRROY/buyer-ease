@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="edit_text_normal">18sp</dimen>
+    <dimen name="text_normal_12">18sp</dimen>
+    <dimen name="text_small_10">15sp</dimen>
+    <dimen name="text_normal_14">20sp</dimen>
+    <dimen name="pic_width">160dp</dimen>
+    <dimen name="pic_height">160dp</dimen>
+
+    <dimen name="pic_middle_width">140dp</dimen>
+    <dimen name="pic_middle_height">140dp</dimen>
+
+    <dimen name="text_normal_18">20sp</dimen>
+
+    <dimen name="tab_height">60dp</dimen>
+
+
+</resources>

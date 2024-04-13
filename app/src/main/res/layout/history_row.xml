@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:gravity="center"
+        >
+
+    <TextView
+        android:id="@+id/txtInspectionNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inspection No"
+        android:textColor="@color/text_primary_back"
+        android:textSize="@dimen/text_normal_12" />
+    <ImageView
+        android:id="@+id/iconImportant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:visibility="gone"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width=".5dp"
+        android:layout_height="match_parent"
+        android:background="@color/divider_under_line"></LinearLayout>
+
+    <TextView
+        android:id="@+id/txtInspectionDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Inspection Date"
+        android:textColor="@color/text_primary_back"
+        android:textSize="@dimen/text_normal_12" />
+
+    <LinearLayout
+        android:layout_width=".5dp"
+        android:layout_height="match_parent"
+
+        android:background="@color/divider_under_line"></LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txtInspectionActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Activity"
+        android:textColor="@color/text_primary_back"
+        android:textSize="@dimen/text_normal_12" />
+
+    <LinearLayout
+        android:layout_width=".5dp"
+        android:layout_height="match_parent"
+
+        android:background="@color/divider_under_line"></LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txtInspectionQR"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="QR"
+        android:textColor="@color/text_primary_back"
+        android:textSize="@dimen/text_normal_12" />
+
+    <LinearLayout
+        android:layout_width=".5dp"
+        android:layout_height="match_parent"
+        android:background="@color/divider_under_line"></LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txtInspector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Inspector"
+        android:textColor="@color/text_primary_back"
+        android:textSize="@dimen/text_normal_12" />
+
+</LinearLayout>

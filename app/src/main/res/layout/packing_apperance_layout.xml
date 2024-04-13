@@ -1,0 +1,1000 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/PackingMeasurementDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/margin_8top"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/overAllResultContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/txtOverAllResultLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Over All Result"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_small_10" />
+
+
+                    <Spinner
+                        android:id="@+id/spinnerPjgAppearOverAllResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text_small_10" />
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/levelPkgAppearContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/overAllResultContainer"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/txtQualityLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/spinnerPkgAppearevel"
+                        android:text="LEVEL"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_small_10" />
+
+
+                    <Spinner
+                        android:id="@+id/spinnerPkgAppearevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text=""
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text_small_10" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                card_view:cardCornerRadius="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtUnitPackingPkgAppearLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Unit Packing"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/colorTeal"
+                            android:textSize="@dimen/text_normal_12"
+                            android:textStyle="bold" />
+
+
+                        <Spinner
+                            android:id="@+id/spinnerSampleSizeUnitPkgAppearPacking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+
+                        <Spinner
+                            android:id="@+id/spinnerOverAllUnitPackingPkgAppear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/unitPkgAppAttachmentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="12dp"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/colorTeal"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/unitPackingIPkgAppImagePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_photo_camera" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                card_view:cardCornerRadius="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtShippingMarkPkgAppearLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Shipping Mark"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/colorTeal"
+                            android:textSize="@dimen/text_normal_12"
+                            android:textStyle="bold" />
+
+
+                        <Spinner
+                            android:id="@+id/spinnerSampleSizeShippingMarkPkgAppearPacking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+
+                        <Spinner
+                            android:id="@+id/spinnerOverAllShippingMarkPkgAppear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/shippingPkgAppAttachmentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="12dp"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/colorTeal"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/shippingPackingIPkgAppImagePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_photo_camera" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/InnerPackingPkgAppearCv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                card_view:cardCornerRadius="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtInnerPackingPkgAppearLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Inner Packing"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/colorTeal"
+                            android:textSize="@dimen/text_normal_12"
+                            android:textStyle="bold" />
+
+
+                        <Spinner
+                            android:id="@+id/spinnerSampleSizeInnerPackingPkgAppearPacking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+
+                        <Spinner
+                            android:id="@+id/spinnerOverAllInnerPackingPkgAppear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/innerPkgAppAttachmentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="12dp"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/colorTeal"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/innerPackingIPkgAppImagePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_photo_camera" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/MasterPackingPkgAppearCv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                card_view:cardCornerRadius="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtMasterPackingPkgAppearLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Master Packing"
+                            android:textColor="@color/colorTeal"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/text_normal_12"
+                            android:textStyle="bold" />
+
+
+                        <Spinner
+                            android:id="@+id/spinnerSampleSizeMasterPackingPkgAppearPacking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+
+                        <Spinner
+                            android:id="@+id/spinnerOverAllMasterPackingPkgAppear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/masterPkgAppAttachmentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="12dp"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/colorTeal"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/masterPackingIPkgAppImagePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_photo_camera" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/PalletPackingPkgAppearCv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                card_view:cardCornerRadius="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtPalletPackingPkgAppearLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Pallet Packing"
+                            android:textColor="@color/colorTeal"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/text_normal_12"
+                            android:textStyle="bold" />
+
+
+                        <Spinner
+                            android:id="@+id/spinnerSampleSizePalletPackingPkgAppearPacking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+
+                        <Spinner
+                            android:id="@+id/spinnerOverAllPalletPackingPkgAppear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/text_small_10" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/palletPkgAppAttachmentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="12dp"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/colorTeal"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/palletPackingIPkgAppImagePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_photo_camera" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/PkgAppearDescHdrLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:text="Description"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:text="SampleSize"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:text="Result"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llPkgAppearDesc9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtPkgAppearDesc9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="Pallet Packing"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:id="@+id/spinnerSampleSizePkgAppearDesc9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+                <Spinner
+                    android:id="@+id/spinnerOverAllPkgAppearDesc9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_small_10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/packingAppearRemarkContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remark"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_14" />
+
+                <EditText
+                    android:id="@+id/editPackingAppearRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_background"
+                    android:gravity="top"
+                    android:minLines="5"
+                    android:textSize="@dimen/text_normal_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

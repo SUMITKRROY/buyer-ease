@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/workManShipListContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chkSelectLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+
+        <TextView
+            android:id="@+id/txtNameLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Name"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+
+        <TextView
+            android:id="@+id/txtEmailLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Email"
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+        <CheckBox
+            android:id="@+id/chkLinkLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+
+
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+        <CheckBox
+            android:id="@+id/chkReportLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+
+        <CheckBox
+            android:id="@+id/chkHtmlLinkLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+        <CheckBox
+            android:id="@+id/chkReceiveApplicableLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+
+            android:textColor="@color/text_primary_back"
+            android:textSize="@dimen/text_normal_12" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

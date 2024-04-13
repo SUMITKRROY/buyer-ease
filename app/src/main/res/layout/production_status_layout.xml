@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/completionDateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--android:layout_marginTop="6dp"-->
+
+            <TextView
+                android:id="@+id/txtCompletionDateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Est. Completion Date"
+                android:textColor="@color/colorTeal"
+                android:textSize="@dimen/text_normal_12" />
+
+            <TextView
+                android:id="@+id/txtCompletionDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:drawableRight="@drawable/ic_perm_contact_calendar_black_18dp"
+                android:gravity="center_vertical"
+
+                android:text="12 jan 2018"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_normal_12" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16top"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remark"
+                android:textSize="@dimen/text_normal_12" />
+
+            <EditText
+                android:id="@+id/editProductionStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8top"
+                android:background="@drawable/edit_background"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:textSize="@dimen/text_normal_12"
+                android:minLines="4" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

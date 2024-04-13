@@ -1,0 +1,371 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/PackingMeasurementDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/margin_8top"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/addSampleDataIv"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_add_circle_outline_black_24dp"/>
+            <LinearLayout
+                android:id="@+id/onSiteHdrLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Purpose"
+                    android:layout_marginEnd="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Number of Samples"
+                    android:layout_marginEnd="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:layout_marginEnd="5dp"
+                    android:text="Remove"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal_12" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llSampleCollected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtSampleCollectedPurpose"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="ON SITE TEST TO BE CHECKED"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <EditText
+                    android:background="@drawable/edit_background"
+                    android:id="@+id/txtSampleCollectedNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="5"
+                    android:inputType="number"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/txtSampleCollectedRemove"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Delete"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llSampleCollected1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtSampleCollectedPurpose1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="ON SITE TEST TO BE CHECKED"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <EditText
+                    android:background="@drawable/edit_background"
+                    android:id="@+id/txtSampleCollectedNumber1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="5"
+                    android:maxLines="2"
+                    android:inputType="number"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/txtSampleCollectedRemove1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Delete"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llSampleCollected2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtSampleCollectedPurpose2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="ON SITE TEST TO BE CHECKED"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <EditText
+                    android:background="@drawable/edit_background"
+                    android:id="@+id/txtSampleCollectedNumber2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="5"
+                    android:inputType="number"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/txtSampleCollectedRemove2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Delete"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llSampleCollected3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtSampleCollectedPurpose3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="ON SITE TEST TO BE CHECKED"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <EditText
+                    android:background="@drawable/edit_background"
+                    android:id="@+id/txtSampleCollectedNumber3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="5"
+                    android:inputType="number"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/txtSampleCollectedRemove3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Delete"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llSampleCollected4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtSampleCollectedPurpose4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="ON SITE TEST TO BE CHECKED"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <EditText
+                    android:background="@drawable/edit_background"
+                    android:id="@+id/txtSampleCollectedNumber4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="5"
+                    android:inputType="number"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/txtSampleCollectedRemove4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Delete"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_12"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/onSiteRemarkContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remark"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal_14" />
+
+                <EditText
+                    android:id="@+id/editSampleCollectedRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_background"
+                    android:gravity="top"
+                    android:minLines="5"
+                    android:textSize="@dimen/text_normal_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

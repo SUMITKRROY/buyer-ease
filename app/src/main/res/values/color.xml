@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color><!-- 3F51B5--><!-- <color name="colorPrimary">#64B5F6</color>-->
+    <color name="colorPrimaryDark">#303f9f</color><!--# 303f9f--><!--<color name="colorPrimaryDark">#2196F3</color>-->
+    <color name="colorAccent">#009688</color>
+
+    <color name="colorTeal">#009688</color>
+
+    <color name="colorBlack">#000</color>
+    <color name="white">#fff</color>
+    <color name="red">#F44336</color>
+    <color name="green">#4CAF50</color>
+    <color name="background">#F5F5F5</color>
+    <color name="text_secondary">#8A000000</color>//(54)
+    <color name="text_primary_back">#000000</color>
+    <color name="divider_under_line">#1F000000</color>
+    <color name="text_dimmed_label">#BDBDBD</color>//(26)
+    <color name="login_button">#d67601</color>
+    <color name="notify_unread_background">#e1e4ff</color>
+    <color name="control_background">#cc4285f4</color>
+    <color name="transparent">#00000000</color>
+</resources>

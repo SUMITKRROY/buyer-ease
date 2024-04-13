@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Buyerease-Fsl</string>
+    <string name="resendSMSMessage">Note: Please wait for 30 seconds to request for resending of SMS.</string>
+    <string name="resendSMSMsg1">Note: Please wait for</string>
+    <string name="resendSMSMsg2">seconds to request for resending of SMS.</string>
+    <string name="enter_hologram">Enter hologram no</string>
+</resources>

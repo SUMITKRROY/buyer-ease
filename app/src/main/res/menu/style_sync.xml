@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/submit"
+        android:iconTint="@color/white"
+        android:orderInCategory="1"
+        android:title="Sync"
+        appcompat:showAsAction="always" />
+
+    <item
+        android:id="@+id/submitAdd"
+        android:iconTint="@color/white"
+        android:orderInCategory="1"
+        android:title="Update"
+        appcompat:showAsAction="always" />
+
+</menu>

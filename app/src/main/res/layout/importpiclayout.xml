@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mPictureOptionslayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/header"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="2dp"
+
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/mCamera"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.54"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_photo_camera"
+            android:padding="10dp"
+            android:text="Camera"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/mGallery"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.54"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_perm_media_black_24dp"
+            android:padding="10dp"
+            android:text="Gallery"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/mCancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:gravity="right"
+            android:padding="10dp"
+            android:text="Cancel"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorTeal" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
