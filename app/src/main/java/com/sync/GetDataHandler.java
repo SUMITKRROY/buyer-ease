@@ -15,8 +15,8 @@ import com.buyereasefsl.ItemInspectionDetailHandler;
 import com.constant.AppConfig;
 import com.constant.FEnumerations;
 import com.constant.JsonKey;
-import com.crashlytics.android.Crashlytics;
 import com.database.DBHelper;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.login.LogInHandler;
 import com.login.UserMaster;
 import com.util.Device_Info;
@@ -906,6 +906,7 @@ public class GetDataHandler implements JsonKey {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        int mStatus = 0;
 
         DBHelper dbHelper = new DBHelper(mContext);
         SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -914,14 +915,22 @@ public class GetDataHandler implements JsonKey {
                 + "='" + contentValues.getAsString(DBHelper.CL_ITEM_ID) + "'";
         Cursor checkCursor = database.rawQuery(strQuery, null);
         boolean IsNotAvailableTOSync = false;
-        if (checkCursor != null && checkCursor.getCount() > 0) {
-            checkCursor.moveToNext();
-            int status = checkCursor.getInt(checkCursor.getColumnIndex(DBHelper.CL_SYNC));
-            if (status == 1) {
-                IsNotAvailableTOSync = true;
+        try {
+
+            if (checkCursor != null && checkCursor.getCount() > 0) {
+                checkCursor.moveToNext();
+                int syncStatusColumnIndex = checkCursor.getColumnIndexOrThrow(DBHelper.CL_SYNC);  // Safer to use getColumnIndexOrThrow
+                int status = checkCursor.getInt(syncStatusColumnIndex);
+                if (status == 1) {
+                    IsNotAvailableTOSync = true;
+                }
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            checkCursor.close();  // Ensure cursor is always closed to avoid memory leaks
         }
-        int mStatus = 0;
         if (!IsNotAvailableTOSync) {
             int rows = database.update(DBHelper.TB_STYLE_DETAIL_TABLE, contentValues,
                     DBHelper.CL_ITEM_ID + " = '" + contentValues.getAsString(DBHelper.CL_ITEM_ID) + "'"
@@ -946,6 +955,7 @@ public class GetDataHandler implements JsonKey {
             FslLog.d(TAG, "No need to update style bcos already edited HOLOGRAM NO ..... ");
         }
         database.close();
+
         return mStatus;
     }
 
@@ -1105,7 +1115,7 @@ public class GetDataHandler implements JsonKey {
             }
         } catch (Exception e) {
             FslLog.e(TAG, " UNIQUE constraint failed: QRPOIntimationDetails pRowID is duplicate ???????????????????????????????????");
-            Crashlytics.logException(new Exception("UNIQUE constraint failed: QRPOIntimationDetails pRowID is duplicate ???????????????????????????????????"));
+            FirebaseCrashlytics.getInstance().recordException(new Exception("UNIQUE constraint failed: QRPOIntimationDetails pRowID is duplicate ???????????????????????????????????"));
             e.printStackTrace();
         }
         database.close();

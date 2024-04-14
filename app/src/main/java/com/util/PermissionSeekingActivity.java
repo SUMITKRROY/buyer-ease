@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.constant.FClientConstants;
 import com.constant.FEnumerations;
@@ -228,6 +228,7 @@ public class PermissionSeekingActivity extends AppCompatActivity {
 
         // returning the same permission type which was requested by the activity
         //for permission
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Intent returnIntent = new Intent();
         returnIntent.putExtra(FClientConstants.PERMISSION_INTENT, mPermissionRequired);
 

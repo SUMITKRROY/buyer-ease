@@ -1,4 +1,4 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,12 +10,12 @@
 
         <include layout="@layout/header_container"></include>
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
 
@@ -26,7 +26,7 @@
                 android:textAlignment="center"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <!--get data or how to use-->
-                        <android.support.v7.widget.CardView
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/getDataCardContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -162,10 +162,10 @@
 
 
                             </LinearLayout>
-                        </android.support.v7.widget.CardView>
+                        </androidx.cardview.widget.CardView>
 
                         <!--send data or how to use-->
-                        <android.support.v7.widget.CardView
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/sendDataCardContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -242,7 +242,7 @@
                                 </LinearLayout>
 
                             </LinearLayout>
-                        </android.support.v7.widget.CardView>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
                     <LinearLayout
@@ -251,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <!--get data or how to use-->
-                        <android.support.v7.widget.CardView
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/getStyleDataCardContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -320,10 +320,10 @@
 
 
                             </LinearLayout>
-                        </android.support.v7.widget.CardView>
+                        </androidx.cardview.widget.CardView>
 
                         <!--send data or how to use-->
-                        <android.support.v7.widget.CardView
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/sendStyleDataCardContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -400,7 +400,7 @@
                                 </LinearLayout>
 
                             </LinearLayout>
-                        </android.support.v7.widget.CardView>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
                     <LinearLayout
@@ -450,7 +450,7 @@
                         </RelativeLayout>
 
 
-                        <android.support.v7.widget.CardView
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="12dp"
@@ -465,14 +465,14 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
                                 <!-- to make nonscrollview     com.util.NonscrollRecylerview-->
-                                <android.support.v7.widget.RecyclerView
+                                <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/recyclerView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:divider="@color/colorBlack"
                                     android:scrollbars="vertical" />
                             </LinearLayout>
-                        </android.support.v7.widget.CardView>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
 
@@ -482,4 +482,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

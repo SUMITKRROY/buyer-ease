@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.General.EnclosureModal;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.constant.AppConfig;
 import com.constant.FClientConfig;
 import com.constant.FClientConstants;
@@ -118,8 +118,8 @@ public class EnclosureAdaptor extends RecyclerView.Adapter<EnclosureAdaptor.View
         holder.txtInspector.setText(enclosureModal.Title);
         if (enclosureModal.IsImportant == 1 && enclosureModal.IsRead == 0) {
             holder.iconImportant.setVisibility(View.VISIBLE);
-            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(holder.iconImportant);
-            Glide.with(activity).load(R.raw.icon_gif_test).into(imageViewTarget);
+            DrawableImageViewTarget imageViewTarget = new DrawableImageViewTarget(holder.iconImportant);
+            Glide.with(activity.getApplicationContext()).load(R.raw.icon_gif_test).into(imageViewTarget);
         } else {
             holder.iconImportant.setVisibility(View.INVISIBLE);
         }

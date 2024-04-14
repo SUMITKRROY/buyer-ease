@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.buyereasefsl">
+    xmlns:dist="http://schemas.android.com/apk/distribution">
 
 
+    <dist:module dist:instant="true" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -14,11 +15,12 @@
         <!--<group android:gid="media_rw" />-->
     </uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+<!--    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />-->
    <!-- <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />-->
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
    <!-- <permission android:name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" >
@@ -40,7 +42,7 @@
         android:theme="@style/AppTheme">
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -79,7 +81,8 @@
         <activity
             android:name="com.login.LogInActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -202,14 +205,16 @@
 
         <activity android:name="com.darsh.multipleimageselect.activities.AlbumSelectActivity"
             tools:replace="android:theme"
-            android:theme="@style/OverrideMultipleImageSelectTheme">
+            android:theme="@style/OverrideMultipleImageSelectTheme"
+            android:exported="false">
             <intent-filter>
                 <category android:name="ANDROID.INTENT.CATEGORY.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name="com.darsh.multipleimageselect.activities.ImageSelectActivity"
             tools:replace="android:theme"
-            android:theme="@style/OverrideMultipleImageSelectTheme">
+            android:theme="@style/OverrideMultipleImageSelectTheme"
+            android:exported="false">
             <intent-filter>
                 <category android:name="ANDROID.INTENT.CATEGORY.DEFAULT" />
             </intent-filter>

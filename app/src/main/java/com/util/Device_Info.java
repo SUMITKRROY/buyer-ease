@@ -9,7 +9,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 
@@ -21,6 +20,8 @@ import java.lang.reflect.Field;
 
 
 import static android.content.Context.WIFI_SERVICE;
+
+import androidx.core.content.ContextCompat;
 
 
 /******

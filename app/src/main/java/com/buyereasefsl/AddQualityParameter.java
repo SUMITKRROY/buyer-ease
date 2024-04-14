@@ -3,9 +3,10 @@ package com.buyereasefsl;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -123,7 +124,7 @@ public class AddQualityParameter extends AppCompatActivity implements View.OnCli
                         Bundle bundle = new Bundle();
                         bundle.putStringArrayList("galleryModels", list);
                         bundle.putInt("position", 0);
-//                    FragmentManager fragmentManager =activity.
+//                      FragmentManager fragmentManager =activity.
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
                         newFragment.setArguments(bundle);
@@ -285,6 +286,7 @@ public class AddQualityParameter extends AppCompatActivity implements View.OnCli
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
         FslLog.d("AddWorkManShip", "onActivityResult requestCode - " + requestCode + " resultCode - " + resultCode);
 
         MultipleImageHandler.onActivityResult(AddQualityParameter.this,

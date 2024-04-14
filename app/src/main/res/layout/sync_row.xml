@@ -63,7 +63,7 @@
             />
 
     </RelativeLayout>
-    <!--</android.support.v7.widget.CardView>-->
+    <!--</androidx.cardview.widget.CardView>-->
 
 
 </LinearLayout>

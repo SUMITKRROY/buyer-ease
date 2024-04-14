@@ -105,7 +105,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
@@ -192,9 +192,9 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
@@ -278,9 +278,9 @@
                             android:src="@drawable/ic_photo_camera" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/InnerPackingPkgAppearCv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -365,9 +365,9 @@
                             android:src="@drawable/ic_photo_camera" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/MasterPackingPkgAppearCv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -452,9 +452,9 @@
                             android:src="@drawable/ic_photo_camera" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/PalletPackingPkgAppearCv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -539,7 +539,7 @@
                             android:src="@drawable/ic_photo_camera" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:visibility="gone"

@@ -1,4 +1,4 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,23 +12,21 @@
 
         <include layout="@layout/header_container"></include>
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="center"
                 android:background="?attr/colorPrimary"
-
                 android:textAlignment="center"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <!-- <include layout="@layout/content_cls_home" />-->
@@ -71,7 +69,7 @@
                             android:textSize="@dimen/text_normal_14" />
 
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/titleWrapper"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -85,7 +83,7 @@
                                 android:inputType="text"
                                 android:textSize="@dimen/text_normal_14" />
 
-                        </android.support.design.widget.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
                     </LinearLayout>
@@ -128,7 +126,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/ic_photo_camera"
-                                android:tint="@color/colorTeal" />
+                                app:tint="@color/colorTeal" />
 
 
                         </LinearLayout>
@@ -158,6 +156,6 @@
     </LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

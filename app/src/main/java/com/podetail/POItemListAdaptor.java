@@ -1,8 +1,8 @@
 package com.podetail;
 
 import android.app.Activity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.buyereasefsl.R;
 import com.constant.FEnumerations;
 import com.util.FslLog;
@@ -218,8 +218,8 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 if (pOItemDtl.IsImportant == 1) {
                     qualityViewHolder.iconImportant.setVisibility(View.VISIBLE);
-                    GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(qualityViewHolder.iconImportant);
-                    Glide.with(activity).load(R.raw.icon_gif_test).into(imageViewTarget);
+                    DrawableImageViewTarget imageViewTarget = new DrawableImageViewTarget(qualityViewHolder.iconImportant);
+                    Glide.with(activity.getApplicationContext()).load(R.raw.icon_gif_test).into(imageViewTarget);
                 } else {
                     qualityViewHolder.iconImportant.setVisibility(View.GONE);
                 }

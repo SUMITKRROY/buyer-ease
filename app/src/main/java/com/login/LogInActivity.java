@@ -9,11 +9,12 @@ import android.database.SQLException;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +30,6 @@ import com.constant.FClientConstants;
 import com.constant.FEnumerations;
 import com.constant.FStatusCode;
 import com.constant.JsonKey;
-import com.crashlytics.android.Crashlytics;
 import com.dashboard.DashboardActivity;
 import com.dashboard.SyncDataHandler;
 import com.data.DeviceSession;
@@ -490,6 +490,7 @@ public class LogInActivity extends AppCompatActivity implements JsonKey {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d(TAG, "Permission callback called-------");
         switch (requestCode) {
             case MULTIPLE_PERMISSION: {

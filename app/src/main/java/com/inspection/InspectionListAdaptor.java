@@ -3,7 +3,7 @@ package com.inspection;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.General.SysData22Handler;
 import com.General.SysData22Modal;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.buyereasefsl.R;
 import com.constant.FEnumerations;
 
@@ -122,8 +122,8 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
 
         if (inspectionModal.IsImportant == 1) {
             holder.iconImportant.setVisibility(View.VISIBLE);
-            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(holder.iconImportant);
-            Glide.with(activity).load(R.raw.icon_gif_test).into(imageViewTarget);
+            DrawableImageViewTarget imageViewTarget = new DrawableImageViewTarget(holder.iconImportant);
+            Glide.with(activity.getApplicationContext()).load(R.raw.icon_gif_test).into(imageViewTarget);
         } else {
             holder.iconImportant.setVisibility(View.GONE);
         }

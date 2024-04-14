@@ -5,13 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-//import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -30,6 +28,7 @@ import com.buyereasefsl.SlideshowDialogFragment;
 import com.constant.FClientConfig;
 import com.constant.FEnumerations;
 import com.data.UserSession;
+import com.google.android.material.textfield.TextInputLayout;
 import com.util.DateUtils;
 import com.util.FslLog;
 import com.util.GenUtils;
@@ -446,6 +445,7 @@ public class HologramHandler extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
         FslLog.d(TAG, "onActivityResult requestCode - " + requestCode + " resultCode - " + resultCode);
 
         MultipleImageHandler.onActivityResult(HologramHandler.this,

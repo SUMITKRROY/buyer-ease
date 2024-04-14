@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -156,7 +157,7 @@
                 android:paddingRight="8dp"
                 android:paddingTop="5dp"
                 android:src="@drawable/ic_photo_camera"
-                android:tint="@color/colorTeal" />
+                app:tint="@color/colorTeal" />
 
         </LinearLayout>
     </LinearLayout>

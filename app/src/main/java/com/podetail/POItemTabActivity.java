@@ -3,13 +3,13 @@ package com.podetail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -23,6 +23,7 @@ import com.constant.AppConfig;
 import com.constant.FClientConstants;
 import com.constant.FEnumerations;
 import com.data.UserSession;
+import com.google.android.material.tabs.TabLayout;
 import com.inspection.InspectionModal;
 import com.util.FslLog;
 import com.util.GenUtils;
@@ -411,6 +412,7 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FEnumerations.RESULT_FOR_DETAIL_CODE
                 || requestCode == FEnumerations.REQUEST_FOR_ADD_INTIMATION) {
             UpdateToRefreshUI();

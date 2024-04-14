@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.util.FslLog;
 import com.google.android.gms.common.ConnectionResult;
@@ -114,7 +113,7 @@ public class LocationServiceHandle implements GoogleApiClient.ConnectionCallback
     }
 
     public interface ConnectionListener {
-        void onConnectionFailed(@NonNull ConnectionResult connectionResult);
+        void onConnectionFailed(ConnectionResult connectionResult);
 
         void onConnectionSuspended(int i);
 

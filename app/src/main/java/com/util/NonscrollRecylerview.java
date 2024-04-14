@@ -1,8 +1,7 @@
 package com.util;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
@@ -16,11 +15,11 @@ public class NonscrollRecylerview  extends RecyclerView {
         super(context);
     }
 
-    public NonscrollRecylerview(Context context, @Nullable AttributeSet attrs) {
+    public NonscrollRecylerview(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public NonscrollRecylerview(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public NonscrollRecylerview(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
