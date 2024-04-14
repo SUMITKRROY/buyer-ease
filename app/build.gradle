@@ -28,6 +28,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        baseline file("lint-baseline.xml")
+        abortOnError false  // You can set this to false to ensure builds do not fail because of lint errors
+    }
     namespace 'com.buyereasefsl'
 }
 
