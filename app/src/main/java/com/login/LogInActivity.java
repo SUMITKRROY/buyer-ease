@@ -586,22 +586,33 @@ public class LogInActivity extends AppCompatActivity implements JsonKey {
     }
 
     private boolean checkAndRequestPermissions() {
-        int permissionSendMessage = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS);
         int locationPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        int permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        int permissionSendMessage = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (locationPermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
-        if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
+        if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
         }
-        if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        // Add checks for READ/WRITE_EXTERNAL_STORAGE only for devices running less than Android 11 (API Level 30)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            int permissionWriteStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            int permissionReadStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+            if (permissionWriteStorage != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+            if (permissionReadStorage != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
         }
         if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            listPermissionsNeeded.add(Manifest.permission.SEND_SMS);
         }
+
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),
                     MULTIPLE_PERMISSION);
