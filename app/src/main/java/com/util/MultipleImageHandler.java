@@ -381,7 +381,7 @@ public class MultipleImageHandler {
             String folderName;
             UserSession userSession = new UserSession(context);
             folderName = userSession.getDeLNO() + "_" + userSession.getInspectionDt();
-            File folderPath = new File(Environment.getExternalStorageDirectory() + File.separator + folderName);
+            File folderPath = new File(context.getExternalFilesDir(null) + File.separator + folderName);
             if (!folderPath.exists()) {
                 folderPath.mkdirs();
                 FslLog.d(TAG, folderName + " new folder created");
@@ -629,7 +629,7 @@ public class MultipleImageHandler {
         String folderName;
         UserSession userSession = new UserSession(inContext);
         folderName = userSession.getDeLNO() + "_" + userSession.getInspectionDt();
-        File folderPath = new File(Environment.getExternalStorageDirectory() + File.separator + folderName);
+        File folderPath = new File(inContext.getExternalFilesDir(null) + File.separator + folderName);
         if (!folderPath.exists()) {
             folderPath.mkdirs();
             FslLog.d(TAG, folderName + " new folder created");
