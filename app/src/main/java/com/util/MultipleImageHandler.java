@@ -354,21 +354,25 @@ public class MultipleImageHandler {
 
     public static void pick_Image_From_Gallery(Activity context) {
 
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        context.startActivityForResult(intent, FEnumerations.RESULT_LOAD_IMAGE);
 
-        Intent intent = new Intent(context, AlbumSelectActivity.class);
-//set limit on number of images that can be selected, default is 10
-        intent.putExtra(Constants.INTENT_EXTRA_LIMIT, 100);
-//            startActivityForResult(intent, Constants.REQUEST_CODE);
-
-        try {
-            context.startActivityForResult(intent, FEnumerations.RESULT_LOAD_IMAGE);
-        } catch (android.content.ActivityNotFoundException e) {
-            Toast toast = ToastCompat.makeText(currentActivity, "Couldn't find any photo viewer app", Toast.LENGTH_LONG);
-            GenUtils.safeToastShow(TAG, context, toast);
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        Intent intent = new Intent(context, AlbumSelectActivity.class);
+////set limit on number of images that can be selected, default is 10
+//        intent.putExtra(Constants.INTENT_EXTRA_LIMIT, 100);
+////            startActivityForResult(intent, Constants.REQUEST_CODE);
+//
+//        try {
+//            context.startActivityForResult(intent, FEnumerations.RESULT_LOAD_IMAGE);
+//        } catch (android.content.ActivityNotFoundException e) {
+//            Toast toast = ToastCompat.makeText(currentActivity, "Couldn't find any photo viewer app", Toast.LENGTH_LONG);
+//            GenUtils.safeToastShow(TAG, context, toast);
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 //        } else {
 //            ToastCompat.makeText(currentActivity, "Couldn't find any photo viewer app", Toast.LENGTH_LONG).show();
 //        }
@@ -434,44 +438,61 @@ public class MultipleImageHandler {
     }
 
 
-    public static void onActivityResult(Activity activity, int requestCode, int resultCode, Intent result, GetBitmap getBitmap) {
+    public static void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data, GetBitmap getBitmap) {
         FslLog.d(TAG, "onActivityResult " + "requestCode : " + requestCode + "," + " resultCode : " + resultCode);
         Log.e(TAG, "onActivityResult " + "requestCode : " + requestCode + "," + " resultCode : " + resultCode);
         try {
             if (activity != null && requestCode == FEnumerations.RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK) {
 
-                ArrayList<Image> images = result.getParcelableArrayListExtra(Constants.INTENT_EXTRA_IMAGES);
-
-                try {
-                    if (images != null && images.size() > 0) {
-                        if (imagesArrayList == null)
-                            imagesArrayList = new ArrayList<>();
-                        else imagesArrayList.clear();
-                        for (int i = 0; i < images.size(); i++) {
-
-                            FslLog.d(TAG, " path selected image " + images.get(i).path);
-                            Log.d(TAG, " path selected image " + images.get(i).path);
-                            imagesArrayList.add(images.get(i).path);
+                if (data != null) {
+                    // Check if multiple images are selected
+                    if (data.getClipData() != null) {
+                        int count = data.getClipData().getItemCount(); // Number of picked images
+                        for (int i = 0; i < count; i++) {
+                            Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                            // Do something with the image (save Uri, display, etc.)
+                            startFeatherFromCamera(activity, imageUri, getBitmap, true);
                         }
-                        //reverse imagesArrayList
-                        Collections.reverse(imagesArrayList);//added by shekhar
-                        getBitmap.onGetBitamp(null, imagesArrayList, valueToBeReturnedToSource);
-                    }
-                } catch (SecurityException e) {
-                    FslLog.e(TAG, "SecurityException " + e.toString());
-                    Log.e(TAG, "SecurityException " + e.toString());
-                    e.printStackTrace();
-                    // lets take read permission
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                        showDialogAfterPermissions(currentActivity, Photo_Source);
+                    } else if (data.getData() != null) {
+                        // Single image selected
+                        Uri imageUri = data.getData();
+                        // Do something with the image (save Uri, display, etc.)
+                        startFeatherFromCamera(activity, imageUri, getBitmap, true);
                     }
                 }
+
+//                ArrayList<Image> images = data.getParcelableArrayListExtra(Constants.INTENT_EXTRA_IMAGES);
+//
+//                try {
+//                    if (images != null && images.size() > 0) {
+//                        if (imagesArrayList == null)
+//                            imagesArrayList = new ArrayList<>();
+//                        else imagesArrayList.clear();
+//                        for (int i = 0; i < images.size(); i++) {
+//
+//                            FslLog.d(TAG, " path selected image " + images.get(i).path);
+//                            Log.d(TAG, " path selected image " + images.get(i).path);
+//                            imagesArrayList.add(images.get(i).path);
+//                        }
+//                        //reverse imagesArrayList
+//                        Collections.reverse(imagesArrayList);//added by shekhar
+//                        getBitmap.onGetBitamp(null, imagesArrayList, valueToBeReturnedToSource);
+//                    }
+//                } catch (SecurityException e) {
+//                    FslLog.e(TAG, "SecurityException " + e.toString());
+//                    Log.e(TAG, "SecurityException " + e.toString());
+//                    e.printStackTrace();
+//                    // lets take read permission
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+////                        showDialogAfterPermissions(currentActivity, Photo_Source);
+//                    }
+//                }
                 return;
             }
             if (requestCode == FEnumerations.IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
                 //Anand handle to send Uri To bitmap without crop
 
-                startFeatherFromCamera(activity, imageUri, getBitmap);
+                startFeatherFromCamera(activity, imageUri, getBitmap, false);
 
 
             }
@@ -513,7 +534,7 @@ public class MultipleImageHandler {
     }
 
 
-    private static void startFeatherFromCamera(final Activity activity, Uri selectedImage, final GetBitmap getBitmap) {
+    private static void startFeatherFromCamera(final Activity activity, Uri selectedImage, final GetBitmap getBitmap, boolean isGallery) {
 
         InputStream is = null;
 
@@ -560,7 +581,7 @@ public class MultipleImageHandler {
                 } else {
                     FslLog.d(TAG, "You selected image not correct path...????????????????");
                 }
-                getBitmap.onGetBitamp(bitmap1, imagesArrayList, valueToBeReturnedToSource);// getBitmap.onGetBitamp(scaled_bitmap, imagesArrayList, valueToBeReturnedToSource);
+                getBitmap.onGetBitamp(bitmap1, imagesArrayList, valueToBeReturnedToSource, isGallery);// getBitmap.onGetBitamp(scaled_bitmap, imagesArrayList, valueToBeReturnedToSource);
 //            }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -779,7 +800,7 @@ public class MultipleImageHandler {
     }
 
     public interface GetBitmap {
-        void onGetBitamp(Bitmap serverBitmap, ArrayList<String> imagePathArrayList, String valueReturned);
+        void onGetBitamp(Bitmap serverBitmap, ArrayList<String> imagePathArrayList, String valueReturned, boolean isGallery);
     }
 
     private static Bitmap rotateImageIfRequired(Context context, Bitmap img, Uri selectedImage) throws IOException {

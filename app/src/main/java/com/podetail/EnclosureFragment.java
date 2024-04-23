@@ -306,7 +306,8 @@ public class EnclosureFragment extends Fragment {
                         @Override
                         public void onGetBitamp(Bitmap serverBitmap,
                                                 ArrayList<String> imagePathArrayList,
-                                                String valueReturned) {
+                                                String valueReturned,
+                                                boolean isGallery) {
 
                             if (imagePathArrayList != null && imagePathArrayList.size() > 0) {
                                 _fileContent.addAll(imagePathArrayList);

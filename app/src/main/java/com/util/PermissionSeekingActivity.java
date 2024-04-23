@@ -517,14 +517,14 @@ public class PermissionSeekingActivity extends AppCompatActivity {
                         return false;
                     }
 
-                    if (ContextCompat.checkSelfPermission(currentActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        FslLog.d(TAG, "Manifest.permission.READ_EXTERNAL_STORAGE NOT granted");
-                        return false;
-                    }
-                    if (ContextCompat.checkSelfPermission(currentActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        FslLog.d(TAG, "Manifest.permission.WRITE_EXTERNAL_STORAGE NOT granted");
-                        return false;
-                    }
+//                    if (ContextCompat.checkSelfPermission(currentActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//                        FslLog.d(TAG, "Manifest.permission.READ_EXTERNAL_STORAGE NOT granted");
+//                        return false;
+//                    }
+//                    if (ContextCompat.checkSelfPermission(currentActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//                        FslLog.d(TAG, "Manifest.permission.WRITE_EXTERNAL_STORAGE NOT granted");
+//                        return false;
+//                    }
 
 
 

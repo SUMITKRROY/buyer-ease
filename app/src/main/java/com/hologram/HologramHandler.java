@@ -453,7 +453,8 @@ public class HologramHandler extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onGetBitamp(Bitmap serverBitmap,
                                             ArrayList<String> imagePathArrayList,
-                                            String valueReturned) {
+                                            String valueReturned,
+                                            boolean isGallery) {
                         int resId = Integer.valueOf(valueReturned);
                         imageList.addAll(imagePathArrayList);
                         if (mViewType == 1 && hologramModal != null) {

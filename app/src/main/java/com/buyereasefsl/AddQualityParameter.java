@@ -294,7 +294,8 @@ public class AddQualityParameter extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onGetBitamp(Bitmap serverBitmap,
                                             ArrayList<String> imagePathArrayList,
-                                            String valueReturned) {
+                                            String valueReturned,
+                                            boolean isGallery) {
                         int resId = Integer.valueOf(valueReturned);
 
                         if (imagePathArrayList != null && imagePathArrayList.size() > 0) {

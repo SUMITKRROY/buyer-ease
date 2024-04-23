@@ -337,7 +337,8 @@ public class AddItemMeasurement extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onGetBitamp(Bitmap serverBitmap,
                                                 ArrayList<String> imagePathArrayList,
-                                                String valueReturned) {
+                                                String valueReturned,
+                                                boolean isGallery) {
                             int resId = Integer.valueOf(valueReturned);
                             if (resId == R.id.workmanshipImage3) {
 //                            workmanshipImage1.setImageBitmap(deviceBitmap);

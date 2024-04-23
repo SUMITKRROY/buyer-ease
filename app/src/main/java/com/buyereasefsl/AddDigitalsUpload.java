@@ -237,6 +237,7 @@ public class AddDigitalsUpload extends AppCompatActivity implements View.OnClick
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
         FslLog.d(TAG, "onActivityResult requestCode - " + requestCode + " resultCode - " + resultCode);
 
         MultipleImageHandler.onActivityResult(AddDigitalsUpload.this,
@@ -244,7 +245,8 @@ public class AddDigitalsUpload extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onGetBitamp(Bitmap serverBitmap,
                                             ArrayList<String> imagePathArrayList,
-                                            String valueReturned) {
+                                            String valueReturned,
+                                            boolean isGallery) {
                         int resId = Integer.valueOf(valueReturned);
 
                         if (imagePathArrayList != null && imagePathArrayList.size() == 1) {

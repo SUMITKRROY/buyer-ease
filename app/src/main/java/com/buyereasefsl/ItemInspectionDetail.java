@@ -7284,7 +7284,8 @@ public class ItemInspectionDetail extends AppCompatActivity
                         @Override
                         public void onGetBitamp(Bitmap serverBitmap,
                                                 ArrayList<String> imagePathArrayList,
-                                                String valueReturned) {
+                                                String valueReturned,
+                                                boolean isGallery) {
                             int resId = Integer.valueOf(valueReturned);
                             if (resId == FEnumerations.REQUEST_FOR_INNER_PACKING_ATTACHMENT) {
 //                                workmanshipImage1.setImageBitmap(deviceBitmap);
