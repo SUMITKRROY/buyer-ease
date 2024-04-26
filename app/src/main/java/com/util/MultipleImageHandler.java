@@ -357,6 +357,7 @@ public class MultipleImageHandler {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
         context.startActivityForResult(intent, FEnumerations.RESULT_LOAD_IMAGE);
 
 //        Intent intent = new Intent(context, AlbumSelectActivity.class);

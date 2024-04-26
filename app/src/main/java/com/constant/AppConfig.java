@@ -19,11 +19,11 @@ public final class AppConfig {
     // Server user login url
     //For API
   //  public static String IP_ADDRESS_LIVE = "http://125.63.65.42/";
-    public static String IP_ADDRESS_DOWNLOAD = "http://www.buyerease.co.in/buyerease/";
+    public static String IP_ADDRESS_DOWNLOAD = "http://bms.swades-sourcing.com/buyereasebh/"; // "http://www.buyerease.co.in/buyerease/";
 
     //for live
 //   public static String IP_ADDRESS_LIVE = "http://103.205.64.190/";
-   public static String IP_ADDRESS_LIVE = "http://buyerease.co.in/"; //"http://103.117.156.104/";
+   public static String IP_ADDRESS_LIVE = "http://103.117.156.104/"; //"http://buyerease.co.in/";
    //public static String IP_ADDRESS_DOWNLOAD = "https://bms.indianinc.com/BuyerEaseBh/";
 
    // public static String IP_ADDRESS_LIVE = "http://14.99.58.67/";
