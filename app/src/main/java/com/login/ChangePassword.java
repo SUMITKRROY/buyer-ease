@@ -70,7 +70,6 @@ public class ChangePassword extends AppCompatActivity implements JsonKey, View.O
 //        String st = GenUtils.truncate(new UserSession(ChangePassword.this).getCompanyName(), FClientConfig.COMPANY_TRUNC_LENGTH);
 //        companyName.setText(st);
 
-        editOldPassword = (EditText) findViewById(R.id.editOldPassword);
 
         new_password_detail = (EditText) findViewById(R.id.new_password_detail);
         editConfirmPassword = (EditText) findViewById(R.id.editConfirmPassword);

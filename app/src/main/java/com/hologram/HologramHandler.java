@@ -464,7 +464,9 @@ public class HologramHandler extends AppCompatActivity implements View.OnClickLi
                         }
 
                         updateImageCount();
-                        ImageAgainHandler();
+                        if(!isGallery){
+                            ImageAgainHandler();
+                        }
                         updateImageUi();
 
                     }

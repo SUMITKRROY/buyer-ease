@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.Handler;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -260,11 +263,56 @@ public class ChooseDataActivity extends AppCompatActivity implements JsonKey, Vi
                     public void onSuccess(JSONObject loginResponse) {
                         if (loginResponse.optBoolean("Result")) {
                             updateSyncList(FEnumerations.E_SYNC_HEADER_TABLE, FEnumerations.E_SYNC_SUCCESS_STATUS);
-                            handleToImageSync();
+                            handleToSizeQtySync();
                         } else {
                             updateSyncList(FEnumerations.E_SYNC_HEADER_TABLE, FEnumerations.E_SYNC_FAILED_STATUS);
                             String msg = loginResponse.optString("Message");
                             FslLog.e(TAG, FEnumerations.E_SYNC_HEADER_TABLE + " \n" + msg);
+                            handleToSizeQtySync();//added by shekhar
+                        }
+                    }
+
+                    @Override
+                    public void onError(VolleyError volleyError) {
+                        updateSyncList(FEnumerations.E_SYNC_HEADER_TABLE, FEnumerations.E_SYNC_FAILED_STATUS);
+                        requestVolleyError(volleyError);
+                    }
+                });
+            } else {
+                updateSyncList(FEnumerations.E_SYNC_HEADER_TABLE, FEnumerations.E_SYNC_SUCCESS_STATUS);
+                handleToImageSync();
+                FslLog.d(TAG, " NO DATA FOUNDED FROM HDR TO SYNC..........");
+            }
+        }
+    }
+    private void handleToSizeQtySync() {
+        if (idsListForSync != null && idsListForSync.size() > 0) {
+            Map<String, Object> hdrTables = SendDataHandler.getSizeQtyData(ChooseDataActivity.this, idsListForSync);
+            if (hdrTables != null && hdrTables.size() > 0) {
+                updateSyncList(FEnumerations.E_SYNC_SIZE_QUANTITY_TABLE, FEnumerations.E_SYNC_IN_PROCESS_STATUS);
+                final Map<String, Object> inspectionData = new HashMap<String, Object>();
+                final Map<String, Object> data = new HashMap<String, Object>();
+                data.put("Data", new JSONObject(hdrTables));
+                data.put("ImageFiles", "");
+                data.put("EnclosureFiles", "");
+                data.put("TestReportFiles", "");
+                data.put("Result", true);
+                data.put("Message", "");
+                data.put("MsgDetail", "");
+                inspectionData.put("InspectionData", data);
+
+                FslLog.d(TAG, " Header sync .........................................\n\n");
+
+                SendDataHandler.sendData(ChooseDataActivity.this, inspectionData, "", new SendDataHandler.GetCallBackResult() {
+                    @Override
+                    public void onSuccess(JSONObject loginResponse) {
+                        if (loginResponse.optBoolean("Result")) {
+                            updateSyncList(FEnumerations.E_SYNC_SIZE_QUANTITY_TABLE, FEnumerations.E_SYNC_SUCCESS_STATUS);
+                            handleToImageSync();
+                        } else {
+                            updateSyncList(FEnumerations.E_SYNC_SIZE_QUANTITY_TABLE, FEnumerations.E_SYNC_FAILED_STATUS);
+                            String msg = loginResponse.optString("Message");
+                            FslLog.e(TAG, FEnumerations.E_SYNC_SIZE_QUANTITY_TABLE + " \n" + msg);
                             handleToImageSync();//added by shekhar
                         }
                     }
@@ -1129,6 +1177,11 @@ public class ChooseDataActivity extends AppCompatActivity implements JsonKey, Vi
     }
 
     private void updateSyncList(String eSyncHeaderTable, int sts) {
+        new Handler(Looper.getMainLooper()).post(() ->
+                updateUI(eSyncHeaderTable,sts)
+        );
+    }
+    private void updateUI(String eSyncHeaderTable, int sts){
         if (statusModalList != null && statusModalList.size() > 0) {
             int pos = -1;
             boolean isFound = false;
@@ -1145,10 +1198,9 @@ public class ChooseDataActivity extends AppCompatActivity implements JsonKey, Vi
                     syncStatusAdaptor.notifyDataSetChanged();
                 }
             }
-
         }
-
     }
+
 
     private void updateSyncTitleList(String eSyncHeaderTable, String sts) {
         if (statusModalList != null && statusModalList.size() > 0) {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.buyereasefsl.ItemInspectionDetailHandler;
 import com.constant.AppConfig;
@@ -89,7 +90,9 @@ public class InspectionListHandler {
 
             if(searchStr!=null && !searchStr.isEmpty())
             {
-                query +=" and pRowID like '%"+searchStr+"%' ";
+                query +=" and ( pRowID like '%"+searchStr+"%' ";
+                query +=" or  pRowID in ( select QRHdrID from QRPOItemDtl where PONO like '%"+searchStr+"%') ";
+                query +=" or  pRowID in ( select QRHdrID from QRPOItemDtl where CustomerItemRef like '%"+searchStr+"%')) ";
             }
             query +=" order by InspectionDt desc";
             FslLog.d(TAG, "get update query for  get inspection list  " + query);
@@ -131,6 +134,24 @@ public class InspectionListHandler {
                     inspectionModal.Factory = cursor.getString(cursor.getColumnIndex("Factory"));
                     inspectionModal.ProductionStatusRemark = cursor.getString(cursor.getColumnIndex("ProductionStatusRemark"));
                     inspectionModal.AQLFormula = cursor.getInt(cursor.getColumnIndex("AQLFormula"));
+                    List<String> ItemIdlists = POItemDtlHandler.getItemIdList(mContext,inspectionModal.pRowID);
+                    Log.e("InspectionListHandler","itemlist"+ItemIdlists);
+                    if (ItemIdlists != null && ItemIdlists.size() > 0) {
+                        String str = "";
+                        for (int j = 0; j < ItemIdlists.size(); j++) {
+                            if (ItemIdlists.size() == 1) {
+                                str = ItemIdlists.get(j);
+                            } else {
+                                if (j == 0) {
+                                    str = ItemIdlists.get(j);
+                                } else {
+                                    str = str + ", " + ItemIdlists.get(j);
+                                }
+                            }
+                        }
+                        inspectionModal.ItemListId = str;
+                    }
+
                     List<String> list = POItemDtlHandler.getPOList(mContext, inspectionModal.pRowID);
                     if (list != null && list.size() > 0) {
                         String str = "";
@@ -174,6 +195,9 @@ public class InspectionListHandler {
         return inspectionArrayList;
     }
 
+    public static List<String> getItemList(Context mContext, String pRowID){
+        return POItemDtlHandler.getItemIdList(mContext,pRowID);
+    }
     public static List<InspectionModal> getSyncedInspectionList(Context mContext,String searchStr) {
 
         ArrayList<InspectionModal> inspectionArrayList = new ArrayList<InspectionModal>();
@@ -190,7 +214,10 @@ public class InspectionListHandler {
                     " Where  /*Datetime(recDt) <= DateTime(IFNULL(Last_Sync_Dt,'1900-01-01 00:00:00')) and*/ IsSynced=1 ";
            if(searchStr!=null && !searchStr.isEmpty())
            {
-               query +=" and pRowID like '%"+searchStr+"%' ";
+//               query +=" and pRowID like '%"+searchStr+"%' ";
+               query +=" and ( pRowID like '%"+searchStr+"%' ";
+               query +=" or  pRowID in ( select QRHdrID from QRPOItemDtl where PONO like '%"+searchStr+"%') ";
+               query +=" or  pRowID in ( select QRHdrID from QRPOItemDtl where CustomerItemRef like '%"+searchStr+"%')) ";
            }
            query +=" order by InspectionDt desc";
             FslLog.d(TAG, "get update query for  get inspection list  " + query);//pRowID not in (select prowid from QRFeedbackhdr where status in (20,40,45,50,60,65)
@@ -232,17 +259,38 @@ public class InspectionListHandler {
                     inspectionModal.Factory = cursor.getString(cursor.getColumnIndex("Factory"));
                     inspectionModal.ProductionStatusRemark = cursor.getString(cursor.getColumnIndex("ProductionStatusRemark"));
                     inspectionModal.AQLFormula = cursor.getInt(cursor.getColumnIndex("AQLFormula"));
-                    List<String> list = POItemDtlHandler.getPOList(mContext, inspectionModal.pRowID);
-                    if (list != null && list.size() > 0) {
+                    List<String> ItemIdlist = POItemDtlHandler.getItemIdList(mContext,inspectionModal.pRowID);
+                    Log.e("InspectionListHandler","itemlistid close"+ItemIdlist);
+//                    List<String> list = POItemDtlHandler.getPOList(mContext, inspectionModal.pRowID);
+                    List<String> ItemIdClosedlists = POItemDtlHandler.getPOList(mContext, inspectionModal.pRowID);
+                    Log.e("InspectionListHandler","ItemIdClosedlists"+ItemIdClosedlists);
+
+                    if (ItemIdlist != null && ItemIdlist.size() > 0) {
                         String str = "";
-                        for (int j = 0; j < list.size(); j++) {
-                            if (list.size() == 1) {
-                                str = list.get(j);
+                        for (int j = 0; j < ItemIdlist.size(); j++) {
+                            if (ItemIdlist.size() == 1) {
+                                str = ItemIdlist.get(j);
                             } else {
                                 if (j == 0) {
-                                    str = list.get(j);
+                                    str = ItemIdlist.get(j);
                                 } else {
-                                    str = str + ", " + list.get(j);
+                                    str = str + ", " + ItemIdlist.get(j);
+                                }
+                            }
+                        }
+                        inspectionModal.ItemListId = str;
+                    }
+
+                    if (ItemIdClosedlists != null && ItemIdClosedlists.size() > 0) {
+                        String str = "";
+                        for (int j = 0; j < ItemIdClosedlists.size(); j++) {
+                            if (ItemIdClosedlists.size() == 1) {
+                                str = ItemIdClosedlists.get(j);
+                            } else {
+                                if (j == 0) {
+                                    str = ItemIdClosedlists.get(j);
+                                } else {
+                                    str = str + ", " + ItemIdClosedlists.get(j);
                                 }
                             }
                         }
@@ -324,5 +372,72 @@ public class InspectionListHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getPackagingAppearanceImageCount(Context mContext, String pRowID) {
+        int count = 0;
+        try {
+            DBHelper dbHelper = new DBHelper(mContext);
+            SQLiteDatabase database = dbHelper.getReadableDatabase();
+            
+            // Query to get image count for packaging appearance
+            String query = "SELECT COUNT(*) FROM QREnclosure WHERE ContextID = ? " +
+                            "AND ContextType = 'PackagingAppearance'";
+            
+            FslLog.d(TAG, "Image count query: " + query + " with pRowID: " + pRowID);
+            
+            Cursor cursor = database.rawQuery(query, new String[]{pRowID});
+            
+            if (cursor != null && cursor.moveToFirst()) {
+                count = cursor.getInt(0);
+                FslLog.d(TAG, "Retrieved image count: " + count);
+            } else {
+                FslLog.d(TAG, "No results found for image count query");
+            }
+            
+            if (cursor != null) {
+                cursor.close();
+            }
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            FslLog.e(TAG, "Error getting packaging appearance image count: " + e.getMessage());
+        }
+        
+        return count;
+    }
+
+    // For retrieving the image paths
+    public static List<String> getPackagingAppearanceImages(Context mContext, String pRowID) {
+        List<String> imagePaths = new ArrayList<>();
+        try {
+            DBHelper dbHelper = new DBHelper(mContext);
+            SQLiteDatabase database = dbHelper.getReadableDatabase();
+            
+            // Query to get all image paths for packaging appearance
+            String query = "SELECT FilePath FROM QREnclosure WHERE ContextID = ? " +
+                           "AND ContextType = 'PackagingAppearance'";
+            
+            Cursor cursor = database.rawQuery(query, new String[]{pRowID});
+            
+            if (cursor != null && cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String path = cursor.getString(cursor.getColumnIndex("FilePath"));
+                    if (path != null && !path.isEmpty()) {
+                        imagePaths.add(path);
+                    }
+                }
+            }
+            
+            if (cursor != null) {
+                cursor.close();
+            }
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            FslLog.e(TAG, "Error getting packaging appearance images: " + e.getMessage());
+        }
+        
+        return imagePaths;
     }
 }

@@ -826,8 +826,8 @@ public class GenUtils {
         return noOfColumns;
     }
 
-    public static File getFile(String folderName, String fielname) {
-        File tempFil = new File(FClientConfig.mExternalStorageDir + "/" + folderName, fielname);
+    public static File getFile(Context mContext, String folderName, String fielname) {
+        File tempFil = new File(mContext.getExternalFilesDir(null)+ "/" + folderName, fielname);
         String m_imagePath = tempFil.getAbsolutePath();
         File file = new File(m_imagePath);
         return file;

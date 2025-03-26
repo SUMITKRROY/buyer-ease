@@ -148,7 +148,11 @@ public class GetDataHandler implements JsonKey {
                                             handleQRFeedBackHdr(mContext, jsonArrayQRFeedBackHdr);
 
                                         } else {
-//                                System.out.println("Key :" + key + "  Value :" + jsonObject.get(key));
+                                            try {
+                                                System.out.println("Key :" + key + "  Value :" + jsonObject.get(key));
+                                            } catch (JSONException e) {
+                                                throw new RuntimeException(e);
+                                            }
                                             switch (key) {
                                                 case FEnumerations.E_TABLE_QRPOItemHdr:
                                                     JSONArray jsonArrayQRPOItemHdr = jsonObject.optJSONArray(FEnumerations.E_TABLE_QRPOItemHdr);
@@ -218,6 +222,10 @@ public class GetDataHandler implements JsonKey {
                                                 case FEnumerations.E_TABLE_AuditBatchDetails:
                                                     JSONArray jsonArrayAuditBatchDetails = jsonObject.optJSONArray(FEnumerations.E_TABLE_AuditBatchDetails);
                                                     handleAuditBatchDetails(mContext, jsonArrayAuditBatchDetails);
+                                                    break;
+                                                case FEnumerations.E_TABLE_Size_Quantity:
+                                                    JSONArray jsonArraySizeQuantity = jsonObject.optJSONArray(FEnumerations.E_TABLE_Size_Quantity);
+                                                    handleSizeQuantity(mContext, jsonArraySizeQuantity);
                                                     break;
 
                                              /*   case feedbackTab://FEnumerations.E_TABLE_QRFeedBackHdr
@@ -411,6 +419,21 @@ public class GetDataHandler implements JsonKey {
             if (cursor != null) cursor.close();
         }
 
+    }
+
+    private static void handleSizeQuantity(Context mContext, JSONArray jsonArraySizeQuantity) {
+
+        if (jsonArraySizeQuantity != null && jsonArraySizeQuantity.length() > 0) {
+            for (int i = 0; i < jsonArraySizeQuantity.length(); i++) {
+                JSONObject jsonObject = jsonArraySizeQuantity.optJSONObject(i);
+                if (jsonObject != null) {
+                    updateOrInsertSizeQuantity(mContext, jsonObject);
+                } else {
+                    FslLog.d(TAG, " jsonArraySizeQuantity jsonObject IS NULL");
+                }
+
+            }
+        }
     }
 
     private static void handleAuditBatchDetails(Context mContext, JSONArray jsonArrayAuditBatchDetails) {
@@ -661,7 +684,46 @@ public class GetDataHandler implements JsonKey {
         }
     }
 
+//Added by Shekhar
+    public static int updateOrInsertSizeQuantity(Context mContext, JSONObject json) {
 
+        DBHelper dbHelper = new DBHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            Iterator<String> keys = json.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                System.out.println("SizeQuantity Key :" + key + " SizeQuantity  Value :" + json.get(key));
+                contentValues.put(key, String.valueOf(json.get(key)));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        /*int rows = database.update("SizeQuantity", contentValues, "QRPOItemHdrID"
+                + " = '" + contentValues.getAsString("QRPOItemHdrID") + "'", null);*/
+
+        int rows = database.update("SizeQuantity", contentValues, "QRPOItemHdrID"
+                + " = '" + contentValues.getAsString("QRPOItemHdrID") + "'"
+                + "and  SizeID" + " = '" + contentValues.getAsString("SizeID") + "'", null);
+
+        Log.e("SizeQuantity","SizeQuantity updated"+rows);
+        int mStatus = 0;
+        if (rows == 0) {
+            long status = database.insert("SizeQuantity", null, contentValues);
+            if (status > 0) {
+                mStatus = 2;
+            }
+
+            FslLog.d(TAG, "insert QRInspectionHistory successfully  ");
+
+        } else {
+            FslLog.d(TAG, "update QRInspectionHistory successfully  ");
+            mStatus = 1;
+        }
+        database.close();
+        return mStatus;
+    }
     public static int updateOrInsertUserMaster(Context mContext, JSONObject json) {
 
 

@@ -297,7 +297,7 @@ public class AddQualityParameter extends AppCompatActivity implements View.OnCli
                                             String valueReturned,
                                             boolean isGallery) {
                         int resId = Integer.valueOf(valueReturned);
-
+                        FslLog.d("AddWorkManShip", "valueReturned - " + valueReturned + " isGallery - " + isGallery);
                         if (imagePathArrayList != null && imagePathArrayList.size() > 0) {
 
                             for (int i = 0; i < imagePathArrayList.size(); i++) {
@@ -318,7 +318,10 @@ public class AddQualityParameter extends AppCompatActivity implements View.OnCli
 
                         }
                         txtSelected.setText(qualityParameter.imageAttachmentList.size() + "");
-                        onQualityParameterSelectImage();
+                        if(!isGallery){
+                            onQualityParameterSelectImage();
+                        }
+
 
                     }
 

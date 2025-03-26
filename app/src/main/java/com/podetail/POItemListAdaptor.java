@@ -3,7 +3,11 @@ package com.podetail;
 import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +22,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.buyereasefsl.R;
 import com.constant.FEnumerations;
+import com.sizeQty.SizeQtyModel;
+import com.sizeQty.SizeQtyModelHandler;
 import com.util.FslLog;
 import com.util.GenUtils;
 
@@ -32,6 +38,7 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public interface OnItemClickListener {
         void onItemClick(POItemDtl item);
+        void onItemQtyClick(POItemDtl item);
 
         void onDeleteItemClick(POItemDtl item);
     }
@@ -168,44 +175,129 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
             if (holder instanceof QualityViewHolder) {
                 final POItemDtl pOItemDtl = data.get(position);
                 final QualityViewHolder qualityViewHolder = (QualityViewHolder) holder;
-               /* if (position == 0) {
-                    qualityViewHolder.qualityPo.setText(pOItemDtl.POhdr);
-                    qualityViewHolder.qualityItem.setText(pOItemDtl.Itemhdr);
+                Log.d("POItemListAdaptor","QRPOItemdtl table prowid="+pOItemDtl.pRowID);
 
-                    qualityViewHolder.qualityOrderLabel1.setText(pOItemDtl.Orderhdr);
-                    qualityViewHolder.qualityAvailableLabel1.setText(pOItemDtl.Availablehdr);
-                    qualityViewHolder.qualityAcceptedLabel1.setText(pOItemDtl.Acceptedhdr);
-                    qualityViewHolder.qualityShortLabel1.setText(pOItemDtl.Shorthdr);
-//                    qualityViewHolder.qualityShortStockQtyLabel1.setText(pOItemDtl.ShortStockQtyhdr);
-                    qualityViewHolder.qualityInspectLaterLabel1.setText(pOItemDtl.InspectLaterHr);
+                //added by shekhar/////
+                // Remove previous TextWatcher if any
+                if (qualityViewHolder.qualityAvailableLabel.getTag() instanceof TextWatcher) {
+                    qualityViewHolder.qualityAvailableLabel.removeTextChangedListener((TextWatcher) qualityViewHolder.qualityAvailableLabel.getTag());
+                }
 
-                    qualityViewHolder.qualityInspectedTillDateLabel1.setText(pOItemDtl.InspectedTillDatehdr);
+                if (qualityViewHolder.qualityAcceptedLabel.getTag() instanceof TextWatcher) {
+                    qualityViewHolder.qualityAcceptedLabel.removeTextChangedListener((TextWatcher) qualityViewHolder.qualityAvailableLabel.getTag());
+                }
+                // Add TextWatcher to update model as user types
+                TextWatcher textWatcherAvailable = new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-                    qualityViewHolder.qualityAvailableLabel.setVisibility(View.GONE);
-                    qualityViewHolder.qualityInspectedTillDateLabel.setVisibility(View.GONE);
-                    qualityViewHolder.qualityOrderLabel.setVisibility(View.GONE);
-                    qualityViewHolder.qualityAcceptedLabel.setVisibility(View.GONE);
-                    qualityViewHolder.qualityShortLabel.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityShortStockQtyLabel.setVisibility(View.GONE);
-                    qualityViewHolder.qualityInspectLaterLabel.setVisibility(View.GONE);
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        Log.e("textAvailable","onTextChanged textAvailable"+s.toString());
+                        if(!s.toString().isEmpty()) {
+                            pOItemDtl.AvailableQty = Integer.parseInt(s.toString());
+                            pOItemDtl.AcceptedQty = pOItemDtl.AvailableQty;
+                        }
+                    }
 
-                    qualityViewHolder.qualityAvailableLabel1.setVisibility(View.VISIBLE);
-                    qualityViewHolder.qualityInspectedTillDateLabel1.setVisibility(View.VISIBLE);
-                    qualityViewHolder.qualityOrderLabel1.setVisibility(View.VISIBLE);
-                    qualityViewHolder.qualityAcceptedLabel1.setVisibility(View.VISIBLE);
-                    qualityViewHolder.qualityShortLabel1.setVisibility(View.VISIBLE);
-//                    qualityViewHolder.qualityShortStockQtyLabel1.setVisibility(View.VISIBLE);
-                    qualityViewHolder.qualityInspectLaterLabel1.setVisibility(View.VISIBLE);
-                    qualityViewHolder.descriptionContainer.setVisibility(View.GONE);
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        Log.e("textAvailable","afterTextChanged textAvailable"+s.toString());
+                        /*if (mRecyclerView != null && !mRecyclerView.isComputingLayout()) {
+                            if (activity instanceof POItemTabActivity) {
+                                ((POItemTabActivity) activity).changeOnAvailable();
+                                ((POItemTabActivity) activity).handleToUpdateTotal();
+                            }
+                        }*/
+                    }
+                };
+                TextWatcher textWatcherAccepted = new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-                } else {*/
-//                    qualityViewHolder.qualityAvailableLabel1.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityOrderLabel1.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityInspectedTillDateLabel1.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityAcceptedLabel1.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityShortLabel1.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityShortStockQtyLabel1.setVisibility(View.GONE);
-//                    qualityViewHolder.qualityInspectLaterLabel1.setVisibility(View.GONE);
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        Log.e("textAcceptedQty","onTextChanged textAcceptedQty"+s.toString());
+                        if(!s.toString().isEmpty()) {
+                            pOItemDtl.AcceptedQty = Integer.parseInt(s.toString());
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        Log.e("textAvailable","afterTextChanged textAvailable"+s.toString());
+                        /*if (mRecyclerView != null && !mRecyclerView.isComputingLayout()) {
+                            if (activity instanceof POItemTabActivity) {
+                                ((POItemTabActivity) activity).changeOnAvailable();
+                                ((POItemTabActivity) activity).handleToUpdateTotal();
+                            }
+                        }*/
+                    }
+                };
+
+                qualityViewHolder.qualityAvailableLabel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //to get the size list
+                        List<SizeQtyModel> sizeQtyModelList = SizeQtyModelHandler.getSizeQtyList(activity.getApplicationContext(),data.get(position).pRowID);
+                        Log.d("POItemListAdaptor","POItemListAdaptor accepted prowid="+data.get(position).pRowID);
+                        Log.d("POItemListAdaptor","POItemListAdaptor available sizeQtyModelList="+sizeQtyModelList.size());
+//                        handleQtyOnClick(position);
+                        if(!sizeQtyModelList.isEmpty()){
+                            handleQtyOnClick(position);
+                        }else {
+                            //added by shekhar
+                            qualityViewHolder.qualityAvailableLabel.setEnabled(true);
+                            qualityViewHolder.qualityAvailableLabel.setFocusable(true);
+                            qualityViewHolder.qualityAvailableLabel.setFocusableInTouchMode(true);
+                            qualityViewHolder.qualityAvailableLabel.setClickable(true);
+                            qualityViewHolder.qualityAvailableLabel.requestFocus();
+
+                            qualityViewHolder.qualityAvailableLabel.addTextChangedListener(textWatcherAvailable);
+                            qualityViewHolder.qualityAvailableLabel.setTag(textWatcherAvailable);
+                        }
+                    }
+                });
+                qualityViewHolder.qualityAcceptedLabel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //to get the size list
+                        List<SizeQtyModel> sizeQtyModelList = SizeQtyModelHandler.getSizeQtyList(activity.getApplicationContext(),data.get(position).pRowID);
+                        Log.d("POItemListAdaptor","POItemListAdaptor accepted prowid="+data.get(position).pRowID);
+                        Log.d("POItemListAdaptor","POItemListAdaptor accepted sizeQtyModelList="+sizeQtyModelList.size());
+
+//                        handleQtyOnClick(position);
+                        if(!sizeQtyModelList.isEmpty()) {
+                            handleQtyOnClick(position);
+                        }else {
+                            //added by shekhar
+                            qualityViewHolder.qualityAcceptedLabel.setEnabled(true);
+                            qualityViewHolder.qualityAcceptedLabel.setFocusable(true);
+                            qualityViewHolder.qualityAcceptedLabel.setFocusableInTouchMode(true);
+                            qualityViewHolder.qualityAcceptedLabel.setClickable(true);
+                            qualityViewHolder.qualityAcceptedLabel.requestFocus();
+                            
+                            qualityViewHolder.qualityAcceptedLabel.addTextChangedListener(textWatcherAccepted);
+                            qualityViewHolder.qualityAcceptedLabel.setTag(textWatcherAccepted);
+                            //commented by shekhar kumar
+                            /*if (mRecyclerView != null && !mRecyclerView.isComputingLayout()) {
+                                if (activity instanceof POItemTabActivity) {
+                                    ((POItemTabActivity) activity).changeOnAvailable();
+                                    ((POItemTabActivity) activity).handleToUpdateTotal();
+                                }
+                            }*/
+                        }
+                    }
+                });
+                //added by shekhar Kumar
+                qualityViewHolder.qualityAcceptedLabel.setFocusable(false);
+                qualityViewHolder.qualityAcceptedLabel.setFocusableInTouchMode(false);
+                qualityViewHolder.qualityAcceptedLabel.setClickable(true);  // Ensure it's clickable
+
+                qualityViewHolder.qualityAvailableLabel.setFocusable(false);
+                qualityViewHolder.qualityAvailableLabel.setFocusableInTouchMode(false);
+                qualityViewHolder.qualityAvailableLabel.setClickable(true);  // Ensure it's clickable
+                ////////////////////End of change////////////////
 
                 qualityViewHolder.descriptionContainer.setVisibility(View.VISIBLE);
                 qualityViewHolder.qualityAvailableLabel.setVisibility(View.VISIBLE);
@@ -282,6 +374,7 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
                 qualityViewHolder.qualityAvailableLabel.setText(pOItemDtl.AvailableQty + "");
                 qualityViewHolder.qualityAcceptedLabel.setText(pOItemDtl.AcceptedQty + "");
                 changeOnAccepted(position, pOItemDtl);
+                Log.d("POItemListAdaptor","pOItemDtl.Short="+pOItemDtl.Short);
                 qualityViewHolder.qualityShortLabel.setText(pOItemDtl.Short + "");
                 if (pOItemDtl.Short < 0) {
                     qualityViewHolder.qualityShortLabel.setTextColor(GenUtils.getColorResource(activity, R.color.red));
@@ -314,16 +407,22 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
                         }
                     }
                 });
+
+                //commented by shekhar
                 //we need to update adapter once we finish with editing
                 qualityViewHolder.qualityAvailableLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     public void onFocusChange(View v, boolean hasFocus) {
+                        Log.d("POItemListAdaptor","qualityAvailableLabel hasFocus="+hasFocus);
                         if (!hasFocus) {
 //                                final int position = v.getId();
-                            final EditText Caption = (EditText) v;
+                            /*final EditText Caption = (EditText) v;
+                            Log.d("POItemListAdaptor","qualityAvailableLabel="+Caption.getText().toString());
                             if (!TextUtils.isEmpty(Caption.getText().toString())) {
 //                                getAvailable(pOItemDtl);
                                 pOItemDtl.AvailableQty = Integer.parseInt(Caption.getText().toString());
                                 pOItemDtl.AcceptedQty = pOItemDtl.AvailableQty;
+                                Log.d("POItemListAdaptor","if condition qualityAvailableLabel="+pOItemDtl.AvailableQty);
+                                Log.d("POItemListAdaptor","if condition AcceptedQty qualityAvailableLabel="+pOItemDtl.AcceptedQty);
 //                                changeOnAccepted(position, pOItemDtl);
 //                                changeOnAvailable(position, pOItemDtl);
 
@@ -334,8 +433,9 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
                                         ((POItemTabActivity) activity).handleToUpdateTotal();
                                     }
                                 }
-                            }
+                            }*/
                         } else if (hasFocus) {
+                            qualityViewHolder.qualityAvailableLabel.setSelection(qualityViewHolder.qualityAvailableLabel.getText().length()); // Keep cursor at end
                             qualityViewHolder.qualityAvailableLabel.setSelectAllOnFocus(true);
                             qualityViewHolder.qualityAvailableLabel.selectAll();
                         }
@@ -344,12 +444,14 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
                 //we need to update adapter once we finish with editing
                 qualityViewHolder.qualityAcceptedLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     public void onFocusChange(View v, boolean hasFocus) {
+                        Log.d("POItemListAdaptor","qualityAcceptedLabel hasFocus="+hasFocus);
                         if (!hasFocus) {
 //                                final int position = v.getId();
-                            final EditText Caption = (EditText) v;
+                            /*final EditText Caption = (EditText) v;
+                            Log.d("POItemListAdaptor","qualityAcceptedLabel="+Caption.getText().toString());
                             if (!TextUtils.isEmpty(Caption.getText().toString())) {
                                 pOItemDtl.AcceptedQty = Integer.parseInt(Caption.getText().toString());
-
+                                Log.d("POItemListAdaptor","if condition AcceptedQty qualityAcceptedLabel="+pOItemDtl.AcceptedQty);
 //                                changeOnAccepted(position, pOItemDtl);
                                 if (mRecyclerView != null && !mRecyclerView.isComputingLayout()) {
 //                                    notifyDataSetChanged();
@@ -358,14 +460,16 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
                                         ((POItemTabActivity) activity).handleToUpdateTotal();
                                     }
                                 }
-                            }
+                            }*/
                         } else if (hasFocus) {
+                            qualityViewHolder.qualityAcceptedLabel.setSelection(qualityViewHolder.qualityAcceptedLabel.getText().length()); // Keep cursor at end
                             qualityViewHolder.qualityAcceptedLabel.setSelectAllOnFocus(true);
                             qualityViewHolder.qualityAcceptedLabel.selectAll();
                         }
                     }
                 });
-                qualityViewHolder.qualityAcceptedLabel.setOnClickListener(new View.OnClickListener() {
+                //commented by shekhar
+                /*qualityViewHolder.qualityAcceptedLabel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (mRecyclerView != null && !mRecyclerView.isComputingLayout()) {
@@ -375,7 +479,7 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
                             }
                         }
                     }
-                });
+                });*/
                 //we need to update adapter once we finish with editing
                 qualityViewHolder.qualityShortLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     public void onFocusChange(View v, boolean hasFocus) {
@@ -704,9 +808,10 @@ public class POItemListAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
     private void handleOnClick(int position) {
-
         listener.onItemClick(data.get(position));
-
+    }
+    private void handleQtyOnClick(int position) {
+        listener.onItemQtyClick(data.get(position));
     }
 
     public void setLoaded() {

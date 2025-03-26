@@ -26,11 +26,15 @@ import com.constant.FClientConstants;
 import com.constant.FEnumerations;
 import com.dashboard.ChooseDataActivity;
 import com.data.UserSession;
+import com.podetail.POItemDtl;
+import com.podetail.POItemDtl1;
 import com.podetail.POItemDtlHandler;
 import com.podetail.POItemListActivity;
 import com.sync.GetDataHandler;
+import com.util.CustomListViewDialog;
 import com.util.FslLog;
 import com.util.GenUtils;
+import com.util.ItemDataAdapter;
 import com.util.SetInitiateStaticVariable;
 
 import org.json.JSONObject;
@@ -40,7 +44,8 @@ import java.util.List;
 
 import me.drakeet.support.toast.ToastCompat;
 
-public class InspectionListActivity extends AppCompatActivity implements InspectionListAdaptor.OnItemClickListener {
+public class InspectionListActivity extends AppCompatActivity implements InspectionListAdaptor.OnItemClickListener,
+        ItemDataAdapter.RecyclerViewItemClickListener{
     String TAG = "InspectionListActivity";
     UserSession userSession;
     static boolean active = false;
@@ -180,6 +185,9 @@ public class InspectionListActivity extends AppCompatActivity implements Inspect
             @Override
             public boolean onQueryTextChange(String newText) {
                 //    adapter.getFilter().filter(newText);
+                if(newText.isEmpty()){
+                    getLocalList(null);
+                }
                 return false;
             }
         });
@@ -368,6 +376,7 @@ public class InspectionListActivity extends AppCompatActivity implements Inspect
     private void getLocalList(String searchStr) {
         if (InspectionListHandler.getInspectionList(this, searchStr).size() > 0) {
             IsDefaultOpenList = true;
+
             if (inspectionModalList == null)
                 inspectionModalList = new ArrayList<>();
             else inspectionModalList.clear();
@@ -458,5 +467,25 @@ public class InspectionListActivity extends AppCompatActivity implements Inspect
         intent.putExtra("detail", GenUtils.serializeInspectionModal(item));
         hideDialog();
         startActivityForResult(intent, 101);
+    }
+
+    CustomListViewDialog customDialog;
+    @Override
+    public void onClickItem(View view, String ProwId) {
+        if(view.getId()==R.id.tvMore){
+            List<String> itemIdList;
+            itemIdList = InspectionListHandler.getItemList(this,ProwId);
+            Log.e("InspectionListActivity","itemlist"+itemIdList);
+            ItemDataAdapter dataAdapter = new ItemDataAdapter(itemIdList, this);
+            customDialog = new CustomListViewDialog(this, dataAdapter);
+            customDialog.show();
+            customDialog.setCanceledOnTouchOutside(false);
+        }
+    }
+    @Override
+    public void clickOnItem(String data) {
+        if (customDialog != null){
+            customDialog.dismiss();
+        }
     }
 }

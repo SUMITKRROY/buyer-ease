@@ -1,14 +1,24 @@
 package com.podetail;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.buyereasefsl.R;
 import com.constant.FEnumerations;
@@ -18,7 +28,7 @@ import com.util.FslLog;
  * Created by ADMIN on 2/2/2018.
  */
 
-public class POItemFragment extends Fragment {
+public class POItemFragment extends Fragment implements LifecycleOwner {
 
     public static POItemFragment newInstance() {
         POItemFragment homeFragment = new POItemFragment();
@@ -62,9 +72,7 @@ String TAG="POItemFragment";
         handleToUpdateTotal();
         return yourFragmentUI;
 
-
     }
-
 
     public void setAdaptor() {
 //        if (pRowIdOfInspectLevel != null
@@ -114,5 +122,33 @@ String TAG="POItemFragment";
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("SizeQtyActivity", "onStart called");
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("SizeQtyActivity", "onResume called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("SizeQtyActivity", "onPause called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("SizeQtyActivity", "onStop called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("SizeQtyActivity", "onDestroy called");
+    }
 }

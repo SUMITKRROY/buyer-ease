@@ -350,7 +350,9 @@ public class AddItemMeasurement extends AppCompatActivity implements View.OnClic
                                         handleToUpdateImage(digitalsUploadModal);
                                     }
                                     updateImageCount();
-                                    ImageSelectHandler();
+                                    if(!isGallery){
+                                        ImageSelectHandler();
+                                    }
                                 }
 
                             }

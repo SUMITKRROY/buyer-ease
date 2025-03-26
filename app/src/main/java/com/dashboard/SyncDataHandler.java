@@ -24,6 +24,7 @@ public class SyncDataHandler {
 
         ArrayList<String> tableArrayList = new ArrayList<String>();
         tableArrayList.add(FEnumerations.E_SYNC_HEADER_TABLE);
+        tableArrayList.add(FEnumerations.E_SYNC_SIZE_QUANTITY_TABLE);
         tableArrayList.add(FEnumerations.E_SYNC_IMAGES_TABLE);
         tableArrayList.add(FEnumerations.E_SYNC_WORKMANSHIP_TABLE);
         tableArrayList.add(FEnumerations.E_SYNC_ITEM_MEASUREMENT_TABLE);
@@ -70,6 +71,7 @@ public class SyncDataHandler {
 
         ArrayList<String> tableArrayList = new ArrayList<String>();
         tableArrayList.add(FEnumerations.E_SYNC_HEADER_TABLE);
+        tableArrayList.add(FEnumerations.E_SYNC_SIZE_QUANTITY_TABLE);
         tableArrayList.add(FEnumerations.E_SYNC_IMAGES_TABLE);
         tableArrayList.add(FEnumerations.E_SYNC_WORKMANSHIP_TABLE);
         tableArrayList.add(FEnumerations.E_SYNC_ITEM_MEASUREMENT_TABLE);

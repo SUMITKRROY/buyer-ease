@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
    <!-- <item
@@ -7,7 +8,8 @@
     <item
         android:id="@+id/logOut"
         android:title="Log out" />
-    <!--<item
+    <item
         android:id="@+id/sharelog"
-        android:title="Share Log" />-->
+        android:icon="@drawable/ic_share"
+        android:title="Share Log" />
 </menu>

@@ -106,5 +106,6 @@ public class InspectionModal {
 
     public boolean IsCheckedToSync;
     public String POListed;
+    public String ItemListId;
     public int IsImportant;
 }

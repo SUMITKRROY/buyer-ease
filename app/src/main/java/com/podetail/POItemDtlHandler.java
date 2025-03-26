@@ -49,7 +49,7 @@ public class POItemDtlHandler {
             contentValues.put("ShortStockQty", poItemDtl.ShortStockQty);
 
 
-            //allow
+            //allow//Earliear it was commented// Uncomment for carton update //Shekhar
 //            contentValues.put("CartonsInspected", poItemDtl.CartonsInspected);
 //            contentValues.put("CartonsPacked", poItemDtl.CartonsPacked);
 //            contentValues.put("CartonsPacked2", poItemDtl.CartonsPacked2);
@@ -497,6 +497,7 @@ public class POItemDtlHandler {
 
 
             //allow
+            FslLog.d(TAG,"CartonsInspected db="+poItemDtl.CartonsInspected);
             contentValues.put("CartonsInspected", poItemDtl.CartonsInspected);
             contentValues.put("CartonsPacked", poItemDtl.CartonsPacked);
             contentValues.put("CartonsPacked2", poItemDtl.CartonsPacked2);
@@ -555,11 +556,16 @@ public class POItemDtlHandler {
             contentValues.put("recDt", AppConfig.getCurrntDate());
             contentValues.put("recEnable", 1);
 
+            //pRowID=DEL0366803
+            Log.d(TAG,"updatePOItemHdrOfWorkmanshipAndCarton poItemDtl.pRowID"+poItemDtl.pRowID);
+            Log.d(TAG,"updatePOItemHdrOfWorkmanshipAndCarton poItemDtl.QRPOItemHdrID"+poItemDtl.QRPOItemHdrID);
             int rows = db.update("QRPOItemHdr", contentValues, "pRowID"
-                    + " = '" + poItemDtl.pRowID + "'", null);
+                    + " = '" + poItemDtl.QRPOItemHdrID + "'", null);
             if (rows == 0) {
 //                long result = db.insert("QRPOItemHdr", null, contentValues);
                 FslLog.d(TAG, " QRPOItemHdr table NOT UPDATED................");
+                db.close();
+                return false;
             } else {
                 FslLog.d(TAG, " QRPOItemHdr type update result................" + rows);
             }
@@ -649,8 +655,13 @@ public class POItemDtlHandler {
             contentValues.put("recDt", AppConfig.getCurrntDate());
             contentValues.put("recEnable", 1);
 
+            /*int rows = db.update("QRPOItemHdr", contentValues, "pRowID"
+                    + " = '" + poItemDtl.pRowID + "'", null);*/
+            Log.d(TAG,"updatePOItemHdrOfWorkmanshipAndCarton poItemDtl.pRowID"+poItemDtl.pRowID);
+            Log.d(TAG,"updatePOItemHdrOfWorkmanshipAndCarton poItemDtl.QRPOItemHdrID"+poItemDtl.QRPOItemHdrID);
+            //change the prow id value for QRPOItemHdr table
             int rows = db.update("QRPOItemHdr", contentValues, "pRowID"
-                    + " = '" + poItemDtl.pRowID + "'", null);
+                    + " = '" + poItemDtl.QRPOItemHdrID + "'", null);
             if (rows == 0) {
 //                long result = db.insert("QRPOItemHdr", null, contentValues);
                 FslLog.d(TAG, " QRPOItemHdr table NOT UPDATED................");
@@ -706,11 +717,17 @@ public class POItemDtlHandler {
                 for (int i = 0; i < cursor.getCount(); i++) {
                     cursor.moveToNext();
                     poItemDtl = new POItemDtl();
-                    poItemDtl.pRowID = cursor.getString(cursor.getColumnIndex("pRowID"));
+                    Log.d("SizeQtyActivity","poItemDtl.pRowID==="+cursor.getString(cursor.getColumnIndex("QrItemID")));
+//                    poItemDtl.pRowID = cursor.getString(cursor.getColumnIndex("pRowID"));
+                    poItemDtl.pRowID = cursor.getString(cursor.getColumnIndex("QrItemID"));
 //                    poItemDtl.LocID = cursor.getString(cursor.getColumnIndex("LocID"));
                     poItemDtl.QRHdrID = cursor.getString(cursor.getColumnIndex("QRHdrID"));
                     poItemDtl.QRPOItemHdrID = cursor.getString(cursor.getColumnIndex("QRPOItemHdrID"));
                     poItemDtl.POItemDtlRowID = cursor.getString(cursor.getColumnIndex("POItemDtlRowID"));
+                    Log.d("SizeQtyActivity","poItemDtl.pRowID="+poItemDtl.pRowID);
+                    Log.d("SizeQtyActivity","poItemDtl.QRHdrID="+poItemDtl.QRHdrID);
+                    Log.d("SizeQtyActivity","poItemDtl.QRPOItemHdrID="+poItemDtl.QRPOItemHdrID);
+                    Log.d("SizeQtyActivity","poItemDtl.POItemDtlRowID="+poItemDtl.POItemDtlRowID);
 //                    poItemDtl.SampleRqstHdrlRowID = cursor.getString(cursor.getColumnIndex("SampleRqstHdrlRowID"));
 //                    poItemDtl.QualityDefectHdrID = cursor.getString(cursor.getColumnIndex("QualityDefectHdrID"));
 //                    poItemDtl.BaseMaterialID = cursor.getString(cursor.getColumnIndex("BaseMaterialID"));
@@ -725,6 +742,7 @@ public class POItemDtlHandler {
 //                    poItemDtl.LatestDelDt = cursor.getString(cursor.getColumnIndex("LatestDelDt"));
 
                     poItemDtl.AcceptedQty = cursor.getInt(cursor.getColumnIndex("AcceptedQty"));
+                    Log.d("SizeQtyActivity","poItemDtl.AcceptedQty"+poItemDtl.AcceptedQty);
                     poItemDtl.FurtherInspectionReqd = cursor.getInt(cursor.getColumnIndex("FurtherInspectionReqd"));
                     poItemDtl.ShortStockQty = cursor.getInt(cursor.getColumnIndex("ShortStockQty"));
 //                    poItemDtl.LatestDelDt = cursor.getString(cursor.getColumnIndex("LatestDelDt"));//added by shekhar
@@ -738,6 +756,7 @@ public class POItemDtlHandler {
 //                    poItemDtl.UnfinishedQty = cursor.getInt(cursor.getColumnIndex("UnfinishedQty"));
 
                     poItemDtl.CartonsInspected = cursor.getInt(cursor.getColumnIndex("CartonsInspected"));
+                    Log.d("SizeQtyActivity","poItemDtl.CartonsInspected="+poItemDtl.CartonsInspected);
                     poItemDtl.CartonsPacked = cursor.getInt(cursor.getColumnIndex("CartonsPacked"));
                     poItemDtl.CartonsPacked2 = cursor.getInt(cursor.getColumnIndex("CartonsPacked2"));
                     poItemDtl.AllowedCartonInspection = cursor.getInt(cursor.getColumnIndex("AllowedCartonInspection"));
@@ -905,6 +924,36 @@ public class POItemDtlHandler {
             cursor.close();
             database.close();
             FslLog.d(TAG, " cout of founded PO lsit " + itemArrayList.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return itemArrayList;
+    }
+    public static List<String> getItemIdList(Context mContext, String pInspectionID) {
+
+
+        List<String> itemArrayList = new ArrayList<String>();
+        try {
+            DBHelper dbHelper = new DBHelper(mContext);
+            SQLiteDatabase database = dbHelper.getReadableDatabase();
+
+            String query = "Select  distinct CustomerItemRef FROM QRPOItemDtl WHERE QRHdrID = '" + pInspectionID + "' and  recEnable=1";
+
+            /* String query = "SELECT * FROM " + "QRPOItemdtl" + " where QRHdrID='" + pRowID + "'";*/
+            FslLog.d(TAG, "get Item id  from QRPOItemdtl list  " + query);
+            Cursor cursor = database.rawQuery(query, null);
+
+
+            if (cursor.getCount() > 0) {
+                for (int i = 0; i < cursor.getCount(); i++) {
+                    cursor.moveToNext();
+                    String ItemIds = cursor.getString(cursor.getColumnIndex("CustomerItemRef"));
+                    itemArrayList.add(ItemIds);
+                }
+            }
+            cursor.close();
+            database.close();
+            FslLog.d(TAG, " cout of founded item id lsit " + itemArrayList.size());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1080,6 +1129,69 @@ public class POItemDtlHandler {
             e.printStackTrace();
             FslLog.d(TAG, "Exception to inserting QRPOItemDtl");
         }
+    }
+
+    public static boolean updateItemForQty(Context mContext, POItemDtl poItemDtl) {
+        try {
+            DBHelper mydb = new DBHelper(mContext);
+            SQLiteDatabase db = mydb.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("AvailableQty", poItemDtl.AvailableQty);
+            contentValues.put("AcceptedQty", poItemDtl.AcceptedQty);
+            contentValues.put("ShortStockQty", poItemDtl.ShortStockQty);
+
+            FslLog.d(TAG, " updateItemForQty pRowID="+poItemDtl.pRowID);
+            FslLog.d(TAG, " updateItemForQty AvailableQty="+poItemDtl.AvailableQty);
+            FslLog.d(TAG, " updateItemForQty AcceptedQty="+poItemDtl.AcceptedQty);
+            FslLog.d(TAG, " updateItemForQty ShortStockQty="+poItemDtl.ShortStockQty);
+
+            int rows = db.update("QRPOItemdtl", contentValues, "pRowID"
+                    + " = '" + poItemDtl.pRowID + "'" +
+                    "and  QRHdrID" + " = '" + poItemDtl.QRHdrID + "'", null);
+            if (rows == 0) {
+                FslLog.d(TAG, " QRPOItemDtl table NOT UPDATED................");
+                return false;
+            } else {
+                FslLog.d(TAG, " QRPOItemDtl type update result................" + rows);
+            }
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            FslLog.d(TAG, "Exception to inserting QRPOItemDtl");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean updateItemForQty1(Context mContext, POItemDtl poItemDtl) {
+        try {
+            DBHelper mydb = new DBHelper(mContext);
+            SQLiteDatabase db = mydb.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("AvailableQty", poItemDtl.AvailableQty);
+            contentValues.put("AcceptedQty", poItemDtl.AcceptedQty);
+            contentValues.put("ShortStockQty", poItemDtl.ShortStockQty);
+
+            FslLog.d(TAG, " updateItemForQty1 pRowID="+poItemDtl.pRowID);
+            FslLog.d(TAG, " updateItemForQty1 AvailableQty="+poItemDtl.AvailableQty);
+            FslLog.d(TAG, " updateItemForQty1 AcceptedQty="+poItemDtl.AcceptedQty);
+            FslLog.d(TAG, " updateItemForQty1 ShortStockQty="+poItemDtl.ShortStockQty);
+
+            int rows = db.update("QRPOItemdtl", contentValues, "pRowID"
+                    + " = '" + poItemDtl.pRowID + "'", null);
+            if (rows == 0) {
+                FslLog.d(TAG, " QRPOItemDtl table NOT UPDATED................");
+                return false;
+            } else {
+                FslLog.d(TAG, " QRPOItemDtl type update result................" + rows);
+            }
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            FslLog.d(TAG, "Exception to inserting QRPOItemDtl");
+            return false;
+        }
+        return true;
     }
 
 }

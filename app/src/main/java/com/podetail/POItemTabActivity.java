@@ -1,21 +1,34 @@
 package com.podetail;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.buyereasefsl.ItemInspectionDetail;
 import com.buyereasefsl.R;
@@ -25,10 +38,15 @@ import com.constant.FEnumerations;
 import com.data.UserSession;
 import com.google.android.material.tabs.TabLayout;
 import com.inspection.InspectionModal;
+import com.sizeQty.SizeQtyActivity;
+import com.sizeQty.SizeQtyAdapter;
+import com.sizeQty.SizeQtyModel;
+import com.sizeQty.SizeQtyModelHandler;
 import com.util.FslLog;
 import com.util.GenUtils;
 import com.util.SetInitiateStaticVariable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -58,6 +76,9 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
     List<POItemDtl> pOItemDtlList;
     List<POItemDtl1> uniqueList;
 
+    private boolean isRedoButtonClick =false;
+    //Added by Shekhar Kumar
+    private boolean isSizeQuantityAvailable =false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +87,7 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        poItemTabActivity = this;
         SetInitiateStaticVariable.setInitiateStaticVariable(POItemTabActivity.this);
 //        TextView companyName = (TextView) findViewById(R.id.companyName);
 //        String st = GenUtils.truncate(new UserSession(POItemTabActivity.this).getCompanyName(), FClientConfig.COMPANY_TRUNC_LENGTH);
@@ -79,10 +101,14 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
         }
         pOItemDtlList = new ArrayList<>();
 //        pOItemDtlList.addAll(GenUtils.deSerializePOItemDtlList(getIntent().getStringExtra("poList")));
+        Log.d("SizeQtyActivity","InspectionProwId="+inspectionModal.pRowID);
         List<POItemDtl> list = POItemDtlHandler.getItemList(this, inspectionModal.pRowID);
         pOItemDtlList.addAll(list);
+        Log.d("SizeQtyActivity","getTotalAcceptedQty DB AcceptedQty="+list.get(0).AcceptedQty);
+        Log.d("SizeQtyActivity","getTotalAcceptedQty DB Short="+list.get(0).Short);
+        Log.d("SizeQtyActivity","getTotalAcceptedQty DB Short="+list.get(0).ShortStockQty);
         handleCalculate();
-        poItemTabActivity = this;
+        handleToUpdateTotal();
         this.getSupportActionBar().setTitle(inspectionModal.pRowID);
 
         UserSession userSession = new UserSession(POItemTabActivity.this);
@@ -191,17 +217,54 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
     @Override
     public void onItemClick(POItemDtl item) {
         if (item != null) {
-
             Intent intent = new Intent(POItemTabActivity.this, ItemInspectionDetail.class);
             intent.putExtra("detail", GenUtils.serializePOItemModal(item));
             intent.putExtra("inspectionDetail", GenUtils.serializeInspectionModal(inspectionModal));
-
             startActivityForResult(intent, FEnumerations.RESULT_FOR_DETAIL_CODE);
-
-
         }
     }
 
+    @Override
+    public void onItemQtyClick(POItemDtl item) {
+        if (item != null) {
+            Log.e(TAG,"sizeQtyModelList size== item.pRowID=="+item.pRowID);
+            List<SizeQtyModel> sizeQtyModelList = SizeQtyModelHandler.getSizeQtyList(POItemTabActivity.this,item.pRowID);
+            Log.e(TAG,"sizeQtyModelList size=="+sizeQtyModelList.size());
+            //check redo condition
+            Log.e(TAG,"check isRedoButtonClick=="+isRedoButtonClick);
+            if(isRedoButtonClick){
+                isRedoButtonClick=false;
+                Log.e(TAG,"updated size qty lits isRedoButtonClick=="+isRedoButtonClick);
+                //update all accepted and available qty same as order qty
+                for(int i=0;i<sizeQtyModelList.size();i++){
+                    SizeQtyModel sizeQtyItem = sizeQtyModelList.get(i);
+                    sizeQtyItem.AvailableQty =sizeQtyItem.OrderQty;
+                    sizeQtyItem.AcceptedQty =sizeQtyItem.OrderQty;
+                    SizeQtyModelHandler.insertSizeQty(this,sizeQtyItem);
+                }
+                sizeQtyModelList = SizeQtyModelHandler.getSizeQtyList(POItemTabActivity.this,item.pRowID);
+            }
+
+            FslLog.d(TAG,"size qty="+sizeQtyModelList.size());
+            if(!sizeQtyModelList.isEmpty()){
+                isSizeQuantityAvailable=true;
+                // Send the list using intent
+                Intent intent = new Intent(POItemTabActivity.this, SizeQtyActivity.class);
+                intent.putExtra("sizeList", (Serializable) sizeQtyModelList);
+                intent.putExtra("detail", GenUtils.serializePOItemModal(item));
+                startActivityForResult(intent,FEnumerations.RESULT_SIZE_QTY);
+            }else {
+                isSizeQuantityAvailable = false;
+            }
+        }
+    }
+
+    private void showKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        }
+    }
     @Override
     public void onDeleteItemClick(POItemDtl item) {
         GenUtils.forConfirmationAlertDialog(POItemTabActivity.this,
@@ -322,6 +385,7 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
             case R.id.actionRedu:
                 handleReduAction();
                 handleToUpdateTotal();
+                isRedoButtonClick=true;
                 updateFragments();
 
                 return true;
@@ -329,7 +393,6 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
 
         return false;
     }
-
 
     private void HandleToSaveAll() {
 
@@ -339,10 +402,12 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
 //                GenUtils.safeToastShow(TAG, getApplicationContext(), toast);
 //            }
 //        });
-
+        if(isRedoButtonClick){
+            handleQualityParameter();
+        }
         handleUpdateData();
 
-//        handleQualityParameter();
+
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -351,13 +416,43 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
         }, 100);
     }
 
+    private void handleQualityParameter(){
+     if(pOItemDtlList!=null){
+         for (int i = 0; i < pOItemDtlList.size(); i++) {
+             POItemDtl item =new POItemDtl();
+             float f = Float.valueOf(pOItemDtlList.get(i).OrderQty);
+             item.AcceptedQty = (int) f;
+             item.AvailableQty = item.AcceptedQty;
+             item.Short = 0;
+             item.pRowID =pOItemDtlList.get(i).pRowID;
+             Log.d(TAG,"handleQualityParameter updateItemForQty1 item.AcceptedQty ="+item.AcceptedQty);
+             Log.d(TAG,"handleQualityParameter updateItemForQty1 item.AvailableQty ="+item.AvailableQty);
+             Log.d(TAG,"handleQualityParameter updateItemForQty1 item.pRowID ="+item.pRowID);
+             boolean status = POItemDtlHandler.updateItemForQty1(POItemTabActivity.this, item);
+             Log.d(TAG,"handleQualityParameter updateItemForQty1="+status);
+         }
+     }else {
+         GenUtils.showToastInThread(POItemTabActivity.this, "Item List Not Available");
+     }
+    }
     private void handleUpdateData() {
+
         boolean status = false;
+        if(isSizeQuantityAvailable) {
+            List<POItemDtl> list = POItemDtlHandler.getItemList(this, inspectionModal.pRowID);
+            if (pOItemDtlList != null)
+                pOItemDtlList.clear();
+            else pOItemDtlList = new ArrayList<>();
+
+            pOItemDtlList.addAll(list);
+            isSizeQuantityAvailable = false;
+        }
+
         for (int i = 0; i < pOItemDtlList.size(); i++) {
 //            status = POItemDtlHandler.updatePOItemHdr(this, pOItemDtlList.get(i));
             status = POItemDtlHandler.updatePOItemDtl(this, pOItemDtlList.get(i));
-        }
 
+        }
         for (int i = 0; i < uniqueList.size(); i++) {
 //            Fragment fragment=adapter.getItem(2).getChildFragmentManager().getFragments();
 //            if (fragment instanceof CartonFragment) {
@@ -388,7 +483,9 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
 
 
             status = POItemDtlHandler.updatePOItemHdrOfWorkmanshipAndCarton(this, uniqueList.get(i));
+            Log.d(TAG,"updatePOItemHdrOfWorkmanshipAndCarton status="+status);
             status = POItemDtlHandler.updatePOItemDtlOfWorkmanshipAndCarton(this, uniqueList.get(i));
+            Log.d(TAG,"updatePOItemDtlOfWorkmanshipAndCarton status="+status);
         }
 
         UpdateToRefreshUI();
@@ -416,6 +513,23 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
         if (requestCode == FEnumerations.RESULT_FOR_DETAIL_CODE
                 || requestCode == FEnumerations.REQUEST_FOR_ADD_INTIMATION) {
             UpdateToRefreshUI();
+        }else if (requestCode ==FEnumerations.RESULT_SIZE_QTY){
+            Log.d(TAG,"quantity updated");
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment instanceof POItemFragment) {
+                    //update list
+                    List<POItemDtl> polist = POItemDtlHandler.getItemList(this, inspectionModal.pRowID);
+                    if (pOItemDtlList != null)
+                        pOItemDtlList.clear();
+                    else pOItemDtlList = new ArrayList<>();
+
+                    pOItemDtlList.addAll(polist);
+                    handleToUpdateTotal();
+                    ((POItemFragment) fragment).poItemListAdaptor.notifyDataSetChanged();
+                    updateFragments();
+
+                }
+            }
         }
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             fragment.onActivityResult(requestCode, resultCode, data);
@@ -425,6 +539,8 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
     }
 
     private void updateFragments() {
+        Log.d(TAG,"updateFragments");
+        isSizeQuantityAvailable = false;
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (fragment instanceof CartonFragment) {
                 ((CartonFragment) fragment).inspectionAdaptor.notifyDataSetChanged();
@@ -454,11 +570,12 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
 
             pOItemDtlList.addAll(list);
             handleCalculate();
-
-
             handleToUpdateTotal();
-            updateFragments();
+//            updateFragments();
         }
+//        handleCalculate();
+//        handleToUpdateTotal();
+        updateFragments();
 
 //        NetworkUtil.hideSoftKeyboard(POItemTabActivity.this);
 
@@ -480,8 +597,22 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
         _MajorDefectsAllowed = 0;
         _MinorDefectsAllowed = 0;
 
+            /*int totalAcceptedQty = 0;
+            for(int i=0;i<sizeQtyModelList1.size();i++){
+                totalAcceptedQty+=sizeQtyModelList1.get(i).AcceptedQty;
+            }
+            Log.d("SizeQtyActivity","totalAcceptedQty: " + totalAcceptedQty);
+
+            item.AcceptedQty = totalAcceptedQty;
+            item.ShortStockQty =  (int) Float.parseFloat(item.OrderQty) - item.AcceptedQty;
+
+            //update previous activity total available and accepted QTY poitem
+//        boolean status = POItemDtlHandler.updatePOItemDtl(SizeQtyActivity.this, item);
+            boolean status = POItemDtlHandler.updateItemForQty(SizeQtyActivity.this, item);*/
+
         if (pOItemDtlList != null && pOItemDtlList.size() > 0) {
             for (int i = 0; i < pOItemDtlList.size(); i++) {
+                Log.e("_totalQuality","QualityShort="+pOItemDtlList.get(i).Short);
 //                _cartonTotal = _cartonTotal + pOItemDtlList.get(i).CartonsPacked;
 //                _cartonTotalPacked = _cartonTotalPacked + pOItemDtlList.get(i).CartonsPacked;
 //                _cartonTotalAvalable = _cartonTotalAvalable + pOItemDtlList.get(i).CartonsPacked;
@@ -491,9 +622,14 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
                     float f = Float.valueOf(pOItemDtlList.get(i).OrderQty);
                     _qualityTotalOrder = _qualityTotalOrder + (int) f;
                 }
+                //added by shekhar
+                float f = Float.valueOf(pOItemDtlList.get(i).OrderQty);
+                pOItemDtlList.get(i).Short = ((int) f) - (pOItemDtlList.get(i).EarlierInspected + pOItemDtlList.get(i).AcceptedQty);
+                /////
                 _totalQualityAvailable = _totalQualityAvailable + pOItemDtlList.get(i).AvailableQty;
                 _totalQualityAccepted = _totalQualityAccepted + pOItemDtlList.get(i).AcceptedQty;
                 _totalQualityShort = _totalQualityShort + pOItemDtlList.get(i).Short;
+
 
 //                _TotalCritical = _TotalCritical + pOItemDtlList.get(i).CriticalDefect;
 //                _TotalMajor = _TotalMajor + pOItemDtlList.get(i).MajorDefect;
@@ -503,6 +639,9 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
 //                _MinorDefectsAllowed = _MinorDefectsAllowed + pOItemDtlList.get(i).MinorDefectsAllowed;
 
             }
+            Log.e("_totalQuality","_totalQualityAvailable="+_totalQualityAvailable);
+            Log.e("_totalQuality","_totalQualityAccepted="+_totalQualityAccepted);
+            Log.e("_totalQuality","_totalQualityShort="+_totalQualityShort);
             if (uniqueList != null) {
                 for (int j = 0; j < uniqueList.size(); j++) {
                     _cartonTotal = _cartonTotal + uniqueList.get(j).CartonsPacked2;
@@ -712,6 +851,7 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
             uniqueList = new ArrayList<>();
         }
 //        uniqueList.addAll(lUNi);
+        Log.d("PoitemTabActivity","Unique size="+lUNi.size());
         for (int k = 0; k < lUNi.size(); k++) {
             uniqueList.add(getCopyData(lUNi.get(k)));
         }
@@ -731,6 +871,10 @@ public class POItemTabActivity extends AppCompatActivity implements POItemMultip
         poItemDtl1.CartonsPacked2 = poItemDtl.CartonsPacked2;
         poItemDtl1.CartonsPacked = poItemDtl.CartonsPacked;
         poItemDtl1.CartonsInspected = poItemDtl.CartonsInspected;
+
+        Log.d(TAG,"poItemDtl.CartonsPacked2="+poItemDtl.CartonsPacked2);
+        Log.d(TAG,"poItemDtl.CartonsPacked="+poItemDtl.CartonsPacked);
+        Log.d(TAG,"poItemDtl.CartonsInspected="+poItemDtl.CartonsInspected);
 
         poItemDtl1.QrItemID = poItemDtl.QrItemID;
         poItemDtl1.QRHdrID = poItemDtl.QRHdrID;

@@ -202,37 +202,26 @@ public class EnclosureAdaptor extends RecyclerView.Adapter<EnclosureAdaptor.View
 
     private void checkPermission(final EnclosureModal enclosureModal) {
 
-        boolean lPermissionFlag = PermissionSeekingActivity.checkPermission(activity
-                , FEnumerations.SAVE_DOC_PERMISSION);
 
-        if (lPermissionFlag) {
-
-            FslLog.d(TAG, "write or read storage permission  is granted");
-            String fileName = enclosureModal.ImageName;//+ "." + enclosureModal.fileExt;
-            if (!TextUtils.isEmpty(enclosureModal.ImageName)) {
-                File file = GenUtils.getFile(FClientConfig.enclosureFolder, fileName);
-                if (file.exists()) {
-                    Uri path = GenUtils.getUri(activity, file);
-                    openOnReader(path, enclosureModal.fileExt);
-                    if (enclosureModal.IsRead == 0) {
-                        enclosureModal.IsRead = 1;
-                        ItemInspectionDetailHandler.updateEnClosureToRead(activity, enclosureModal);
-                        ItemInspectionDetailHandler.getUpdateDownloadStaus(activity, enclosureModal);
-                    }
-                } else {
-                    downLoadAttachment(activity, enclosureModal);
+        FslLog.d(TAG, "write or read storage permission  is granted");
+        String fileName = enclosureModal.ImageName;//+ "." + enclosureModal.fileExt;
+        if (!TextUtils.isEmpty(enclosureModal.ImageName)) {
+            File file = GenUtils.getFile(activity, FClientConfig.enclosureFolder, fileName);
+            if (file.exists()) {
+                Uri path = GenUtils.getUri(activity, file);
+                openOnReader(path, enclosureModal.fileExt);
+                if (enclosureModal.IsRead == 0) {
+                    enclosureModal.IsRead = 1;
+                    ItemInspectionDetailHandler.updateEnClosureToRead(activity, enclosureModal);
+                    ItemInspectionDetailHandler.getUpdateDownloadStaus(activity, enclosureModal);
                 }
             } else {
                 downLoadAttachment(activity, enclosureModal);
             }
-
-
         } else {
-            FslLog.d(TAG, "seeking write or read storage permission");
-            Intent intent = new Intent(activity, PermissionSeekingActivity.class);
-            intent.putExtra(FClientConstants.PERMISSION_INTENT, FEnumerations.SAVE_DOC_PERMISSION);
-            activity.startActivityForResult(intent, FEnumerations.SAVE_DOC_PERMISSION);
+            downLoadAttachment(activity, enclosureModal);
         }
+
     }
 
     private void downLoadAttachment(final Activity activity, final EnclosureModal enclosureModal) {
@@ -263,7 +252,7 @@ public class EnclosureAdaptor extends RecyclerView.Adapter<EnclosureAdaptor.View
 
 
                         if (activity != null && !TextUtils.isEmpty(result)) {
-                            File file = GenUtils.getFile(FClientConfig.enclosureFolder, result);
+                            File file = GenUtils.getFile(activity, FClientConfig.enclosureFolder, result);
 
                             if (file.exists()) {
                                 Uri path = GenUtils.getUri(activity, file);

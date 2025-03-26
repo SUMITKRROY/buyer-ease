@@ -97,15 +97,8 @@ public class CartonFragment extends Fragment {
 
     }
     public void handleToUpdateTotal() {
-
-
-
-
-
         CartonTotalPacked.setText(POItemTabActivity.poItemTabActivity. _cartonTotalPacked + "");
         cartonTotalAvalable.setText(POItemTabActivity.poItemTabActivity._cartonTotalAvalable + "");
         cartonTotalInspected.setText(POItemTabActivity.poItemTabActivity._cartonTotalInspected + "");
-
-
     }
 }

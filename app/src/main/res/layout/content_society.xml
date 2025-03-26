@@ -186,7 +186,6 @@
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_profile"
                             android:drawablePadding="8dp"
-                            android:text="admin"
                             android:hint="User Name"
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
@@ -205,7 +204,7 @@
                             android:drawableLeft="@drawable/ic_lock_open_black_24dp"
                             android:drawablePadding="8dp"
                             android:hint="Password"
-                            android:text="buyerease123"
+
                             android:inputType="textPassword"
                             android:singleLine="true"
                             android:textSize="@dimen/edit_text_normal" />

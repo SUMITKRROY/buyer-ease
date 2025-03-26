@@ -203,32 +203,22 @@ public class TestReportAdaptor extends RecyclerView.Adapter<TestReportAdaptor.Vi
 
     private void checkPermission(final TestReportModal enclosureModal) {
 
-        boolean lPermissionFlag = PermissionSeekingActivity.checkPermission(activity
-                , FEnumerations.SAVE_DOC_PERMISSION);
 
-        if (lPermissionFlag) {
-            String ext = "." + enclosureModal.fileExtn;
-            FslLog.d(TAG, "write or read storage permission  is granted");
-            String fileName = enclosureModal.pRowID + ext;
-            if (!TextUtils.isEmpty(enclosureModal.pRowID)) {
-                File file = GenUtils.getFile(FClientConfig.testReportFolder, fileName);
-                if (file.exists()) {
-                    Uri path = GenUtils.getUri(activity, file);
-                    openOnReader(path, ext);
-                } else {
-                    downLoadAttachment(activity, enclosureModal);
-                }
+        String ext = "." + enclosureModal.fileExtn;
+        FslLog.d(TAG, "write or read storage permission  is granted");
+        String fileName = enclosureModal.pRowID + ext;
+        if (!TextUtils.isEmpty(enclosureModal.pRowID)) {
+            File file = GenUtils.getFile(activity, FClientConfig.testReportFolder, fileName);
+            if (file.exists()) {
+                Uri path = GenUtils.getUri(activity, file);
+                openOnReader(path, ext);
             } else {
                 downLoadAttachment(activity, enclosureModal);
             }
-
-
         } else {
-            FslLog.d(TAG, "seeking write or read storage permission");
-            Intent intent = new Intent(activity, PermissionSeekingActivity.class);
-            intent.putExtra(FClientConstants.PERMISSION_INTENT, FEnumerations.SAVE_DOC_PERMISSION);
-            activity.startActivityForResult(intent, FEnumerations.SAVE_DOC_PERMISSION);
+            downLoadAttachment(activity, enclosureModal);
         }
+
     }
 
     private void downLoadAttachment(final Activity activity, final TestReportModal enclosureModal) {
@@ -249,7 +239,7 @@ public class TestReportAdaptor extends RecyclerView.Adapter<TestReportAdaptor.Vi
 
 
                         if (activity != null && !TextUtils.isEmpty(result)) {
-                            File file = GenUtils.getFile(FClientConfig.testReportFolder, result);
+                            File file = GenUtils.getFile(activity, FClientConfig.testReportFolder, result);
                             if (file.exists()) {
                                 Uri path = GenUtils.getUri(activity, file);
                                 FslLog.d(TAG, " uri " + path);

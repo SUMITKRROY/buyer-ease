@@ -264,7 +264,10 @@ public class AddDigitalsUpload extends AppCompatActivity implements View.OnClick
                             digitalsUploadModal.ImageExtn = FEnumerations.E_IMAGE_EXTN;
                         }
                         txtSelected.setText(digitalsUploadModal.imageArray.size() + "");
-                        ImageAgainHandler();
+                        if(!isGallery){
+                            ImageAgainHandler();
+                        }
+
 
 
 //                    workmanshipImage1 = serverBitmap;

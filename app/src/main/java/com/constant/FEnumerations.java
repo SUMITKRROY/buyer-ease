@@ -79,6 +79,7 @@ public class FEnumerations {
     public static final int REQUEST_FOR_PROFILE_EDIT = 2;
     public static final int RESULT_FOR_DETAIL_CODE = 33;
     public static final int RESULT_PO_ITEM = 21;
+    public static final int RESULT_SIZE_QTY = 89;
 
     public static final int REQUEST_FOR_CHANGE_PASSWORD = 1;
     public static final int REQUEST_FOR_FORGOT_PASSWORD = 2;
@@ -201,7 +202,8 @@ public class FEnumerations {
 
     public static final String E_TABLE_ItemMeasurement = "Table14";
     public static final String E_TABLE_AuditBatchDetails = "Table15";
-    public static final String E_TABLE_QRFeedBackHdr = "Table16";
+    public static final String E_TABLE_Size_Quantity = "Table16";
+//    public static final String E_TABLE_QRFeedBackHdr = "Table16";
 
 
     public static final String E_TABLE_NAME_QRPOItemHdr = "QRPOItemHdr";
@@ -227,6 +229,7 @@ public class FEnumerations {
     public static final String E_TABLE_NAME_QRFindings = "QRFindings";
 
     public static final String E_SYNC_HEADER_TABLE = "HEADER";
+    public static final String E_SYNC_SIZE_QUANTITY_TABLE = "SIZE QUANTITY";
     public static final String E_SYNC_IMAGES_TABLE = "IMAGE";
     public static final String E_SYNC_WORKMANSHIP_TABLE = "WORKMANSHIP";
     public static final String E_SYNC_ITEM_MEASUREMENT_TABLE = "ITEM MEASUREMENT";

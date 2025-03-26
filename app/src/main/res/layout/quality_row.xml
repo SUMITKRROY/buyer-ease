@@ -86,7 +86,11 @@
             android:layout_height="match_parent"
             android:background="@color/divider_under_line"></View>
 
-
+        <!--<LinearLayout
+            android:id="@+id/llAvailableQty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">-->
         <EditText
             android:id="@+id/qualityAvailableLabel"
             android:layout_width="0dp"
@@ -99,25 +103,32 @@
             android:text=""
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_normal_12" />
+        <!--</LinearLayout>-->
 
         <View
             android:layout_width=".5dp"
             android:layout_height="match_parent"
             android:background="@color/divider_under_line"></View>
 
+<!--<LinearLayout
+    android:id="@+id/llAcceptedQty"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">-->
+    <EditText
+        android:id="@+id/qualityAcceptedLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="@android:color/transparent"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="5dp"
+        android:text=""
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_normal_12" />
+<!--</LinearLayout>-->
 
-        <EditText
-            android:id="@+id/qualityAcceptedLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/transparent"
-            android:gravity="center"
-            android:inputType="number"
-            android:padding="5dp"
-            android:text=""
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/text_normal_12" />
 
         <View
             android:layout_width=".5dp"

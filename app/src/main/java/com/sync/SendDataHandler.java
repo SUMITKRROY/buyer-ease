@@ -61,11 +61,19 @@ public class SendDataHandler implements JsonKey {
                 params.put("QRPOItemHdr", getQRPOItemHdrJson(mContext, hdrIdList.get(i)));
                 params.put("QRPOItemDtl", getQRPOItemdtlJson(mContext, hdrIdList.get(i)));
             }
-
-
         }
+        return params;
+    }
+    public static Map<String, Object> getSizeQtyData(Context mContext, List<String> hdrIdList) {
 
+        Map<String, Object> params = null;
+        if (hdrIdList != null && hdrIdList.size() > 0) {
+            params = new HashMap<>();
+            for (int i = 0; i < hdrIdList.size(); i++) {
 
+                params.put("SizeQuantity", getSizeQtyJson(mContext, hdrIdList.get(i)));
+            }
+        }
         return params;
     }
 
@@ -435,6 +443,17 @@ public class SendDataHandler implements JsonKey {
 //                params.put("QRPOItemdtl", jsonArrayList);
 //            }
             FslLog.d(TAG, " json from QRPOItemdtl table " + jsonArrayList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonArrayList;
+    }
+    public static JSONArray getSizeQtyJson(Context mContext, String hdrID) {
+        JSONArray jsonArrayList = null;
+        try {
+            String query = "Select size.* from SizeQuantity size inner join QRPOItemHdr ItemHdr on size.QRPOItemHdrID=ItemHdr.pRowID where ItemHdr.QRHdrID in ('"+hdrID+"') ";
+            jsonArrayList = getJsonFromTableColumn(mContext, query);
+            FslLog.d(TAG, " json from SizeQuantity table " + jsonArrayList);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -38,6 +39,7 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
 
     public interface OnItemClickListener {
         void onItemClick(InspectionModal item);
+        void onClickItem(View view, String ProwId);
     }
 
     RecyclerView mRecyclerView;
@@ -58,7 +60,7 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
         // each data item is just a string in this case
         public TextView txtID, txtDate, inspectionActivity, txtVendor,
                 txtCustomer, txtQR, txtInspector,
-                txtVendorContact, txtVendorAddress, txtStatus, txtPONO;
+                txtVendorContact, txtVendorAddress, txtStatus, txtPONO,txtItemId,tvMore;
         CheckBox chkToSync;
         LinearLayout inspectionDetailContainer;
         ImageView iconImportant;
@@ -68,6 +70,7 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
 
             txtID = (TextView) v.findViewById(R.id.txtID);
             txtPONO = (TextView) v.findViewById(R.id.txtPONO);
+            txtItemId = (TextView) v.findViewById(R.id.txtItemId);
             txtDate = (TextView) v.findViewById(R.id.txtDate);
             inspectionActivity = (TextView) v.findViewById(R.id.inspectionActivity);
             txtVendor = (TextView) v.findViewById(R.id.txtVendor);
@@ -77,6 +80,7 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
             txtVendorContact = (TextView) v.findViewById(R.id.txtVendorContact);
             txtVendorAddress = (TextView) v.findViewById(R.id.txtVendorAddress);
             txtStatus = (TextView) v.findViewById(R.id.txtStatus);
+            tvMore = (TextView) v.findViewById(R.id.tvMore);
             chkToSync = (CheckBox) v.findViewById(R.id.chkToSync);
             inspectionDetailContainer = (LinearLayout) v.findViewById(R.id.inspectionDetailContainer);
             iconImportant = (ImageView) v.findViewById(R.id.iconImportant);
@@ -116,10 +120,16 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
         holder.txtVendorAddress.setText(inspectionModal.VendorAddress);
         holder.txtDate.setText(inspectionModal.InspectionDt);
         holder.txtPONO.setText(inspectionModal.POListed);
-
+        holder.txtItemId.setText(inspectionModal.ItemListId);
+        Log.e("InspectionsListAdapter","inspectionModal.ItemListId=="+inspectionModal.ItemListId);
         holder.chkToSync.setChecked(inspectionModal.IsCheckedToSync);
         holder.chkToSync.setTag(inspectionModal);
 
+        if(holder.txtItemId.getText().toString().length()>=50){
+            holder.tvMore.setVisibility(View.VISIBLE);
+        }else {
+            holder.tvMore.setVisibility(View.GONE);
+        }
         if (inspectionModal.IsImportant == 1) {
             holder.iconImportant.setVisibility(View.VISIBLE);
             DrawableImageViewTarget imageViewTarget = new DrawableImageViewTarget(holder.iconImportant);
@@ -143,6 +153,12 @@ public class InspectionListAdaptor extends RecyclerView.Adapter<InspectionListAd
             @Override
             public void onClick(View view) {
                 listener.onItemClick(inspectionModal);
+            }
+        });
+        holder.tvMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClickItem(view,inspectionModal.pRowID);
             }
         });
         if (!TextUtils.isEmpty(inspectionModal.Status)) {

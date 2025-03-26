@@ -401,9 +401,9 @@ public class DashboardActivity extends AppCompatActivity implements JsonKey {
                     case R.id.logOut:
                         handleLogOut();
                         break;
-                    /*case R.id.sharelog:
-                        ShareHandler.HandleLogShare(DashboardActivity.this);
-                        break;*/
+                    case R.id.sharelog:
+                        shareLogFile();
+                        break;
                     /*case R.id.changePassword:
                         handleChangePassword();
                         break;*/
@@ -417,5 +417,24 @@ public class DashboardActivity extends AppCompatActivity implements JsonKey {
             }
         });
 
+    }
+
+    private void shareLogFile() {
+        if (FslLog.logFile != null && FslLog.logFile.exists()) {
+            try {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, androidx.core.content.FileProvider.getUriForFile(this,
+                        getPackageName(),
+                        FslLog.logFile));
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Buyerease Log File");
+                startActivity(Intent.createChooser(shareIntent, "Share Log File"));
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error sharing log file: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Log file not found", Toast.LENGTH_SHORT).show();
+        }
     }
 }

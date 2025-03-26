@@ -10,6 +10,7 @@
     android:paddingBottom="12dp"
     android:gravity="center_vertical"
     android:text="jnjk"
-    android:textColor="@color/text_primary_back"
+    android:textStyle="bold"
+    android:textColor="@color/colorBlack"
     android:textSize="@dimen/text_normal_12"/>
 

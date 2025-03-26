@@ -97,6 +97,8 @@ public class ItemInspectionDetail extends AppCompatActivity
     ImageView palletBarcodeImagePicker,masterBarcodeImagePicker,innerBarcodeImagePicker,unitBarcodeImagePicker;
     TextView  unitBarcodeAttachmentCount,innerBarcodeAttachmentCount,masterBarcodeAttachmentCount,palletBarcodeAttachmentCount;
     TextView unitAttachmentCount, innerAttachmentCount, masterAttachmentCount, palletAttachmentCount;
+    TextView unitPkgAppAttachmentCount, shippingPkgAppAttachmentCount, innerPkgAppAttachmentCount, 
+            masterPkgAppAttachmentCount, palletPkgAppAttachmentCount;
     Spinner spinnerOverAllResult, spinnerMasterPackingOverAllResult, spinnerInnerPackingOverAllResult,
             spinnerUnitPackingOverAllResult, spinnerPalletPackingOverAllResult, spinnerInspectionLevel,
             spinnerSampleSizeUnitPacking, spinnerSampleSizeInnerPacking, spinnerSampleSizeMasterPacking,
@@ -2906,6 +2908,11 @@ public class ItemInspectionDetail extends AppCompatActivity
         masterBarcodeAttachmentCount = (TextView) findViewById(R.id.masterBarcodeAttachmentCount);
         palletBarcodeAttachmentCount = (TextView) findViewById(R.id.unitBarcodeAttachmentCount);
 
+        unitPkgAppAttachmentCount = (TextView) findViewById(R.id.unitPkgAppAttachmentCount);
+        shippingPkgAppAttachmentCount = (TextView) findViewById(R.id.shippingPkgAppAttachmentCount);
+        innerPkgAppAttachmentCount = (TextView) findViewById(R.id.innerPkgAppAttachmentCount);
+        masterPkgAppAttachmentCount = (TextView) findViewById(R.id.masterPkgAppAttachmentCount);
+        palletPkgAppAttachmentCount = (TextView) findViewById(R.id.palletPkgAppAttachmentCount);
 
         packingFillContainer = (LinearLayout) findViewById(R.id.packingFillContainer);
         innerPackingFillContainer = (LinearLayout) findViewById(R.id.innerPackingFillContainer);
@@ -3063,6 +3070,11 @@ public class ItemInspectionDetail extends AppCompatActivity
 
         String valueToReturn = FEnumerations.REQUEST_FOR_UNIT_PKG_APP_ATTACHMENT + "";
         MultipleImageHandler.showDialog(ItemInspectionDetail.this, MultipleImageHandler.DOCUMENT, valueToReturn);
+    }
+    private void againOpen(String valueToReturn) {
+
+//        String valueToReturn = FEnumerations.REQUEST_FOR_UNIT_PKG_APP_ATTACHMENT + "";
+        MultipleImageHandler.showDialog(ItemInspectionDetail.this, MultipleImageHandler.DOCUMENT, valueToReturn, MultipleImageHandler.pickerViewer);
     }
 
     private void onShippingPackageAppearImage() {
@@ -3950,29 +3962,6 @@ public class ItemInspectionDetail extends AppCompatActivity
                     spinnerPkgAppeOverAllTouched = false;
 //                    pOItemPkgAppDetail.pRowID = overAllResultStatusList.get(i).pGenRowID;
                     pOItemPkgAppDetail.pRowID = pkgAppList.get(7).pRowID;
-                    pOItemPkgAppDetail.InspectionResultID = overAllResultStatusList.get(i).pGenRowID;
-//                    pOItemPkgAppDetail.recUser = overAllResultStatusList.get(i).recUser;
-//                    pOItemPkgAppDetail.DescrID = overAllResultStatusList.get(i).GenID;
-                    updatePkgAppearance(pOItemPkgAppDetail);
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-                }
-            });
-            //Setting the ArrayAdapter data on the Spinner
-            spinnerOverAllPkgAppearDesc9.setAdapter(masterArrary);
-//            spinnerOverAllMasterPackingPkgAppear.setSelection(selectedMPos);
-            spinnerOverAllPkgAppearDesc9.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (!spinnerPkgAppeOverAllTouched) {
-                        return;
-                    }
-                    spinnerPkgAppeOverAllTouched = false;
-//                    pOItemPkgAppDetail.pRowID = overAllResultStatusList.get(i).pGenRowID;
-                    pOItemPkgAppDetail.pRowID = pkgAppList.get(8).pRowID;
                     pOItemPkgAppDetail.InspectionResultID = overAllResultStatusList.get(i).pGenRowID;
 //                    pOItemPkgAppDetail.recUser = overAllResultStatusList.get(i).recUser;
 //                    pOItemPkgAppDetail.DescrID = overAllResultStatusList.get(i).GenID;
@@ -6664,9 +6653,6 @@ public class ItemInspectionDetail extends AppCompatActivity
 
                 itemQtyLL.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 txtItemQty.setTextColor(GenUtils.getColorResource(ItemInspectionDetail.this, R.color.white));
-
-                itemSampleCollectedLL.setBackgroundColor(getResources().getColor(R.color.white));
-                txtSampleCollected.setTextColor(GenUtils.getColorResource(ItemInspectionDetail.this, R.color.colorBlack));
                 viewFlipper.setDisplayedChild(12);*/
                 showItemQtyTab();
                 NetworkUtil.hideSoftKeyboard(ItemInspectionDetail.this);
@@ -7293,8 +7279,10 @@ public class ItemInspectionDetail extends AppCompatActivity
                                 packagePoItemDetalDetail.innerPackingAttachmentList.addAll(imagePathArrayList);
                                 innerAttachmentCount.setText("" + packagePoItemDetalDetail.innerPackingAttachmentList.size());
 //                                        workManShipModel.listImages.add(stringImage2);
-                                onInnerPackImage();
-
+//                                onInnerPackImage();//commented by shekhar
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
 
                             } else if (resId == FEnumerations.REQUEST_FOR_UNIT_PACKING_ATTACHMENT) {
 //                                workmanshipImage2.setImageBitmap(deviceBitmap);
@@ -7303,8 +7291,10 @@ public class ItemInspectionDetail extends AppCompatActivity
 //                                        workManShipModel.listImages.add(stringImage2);
                                 packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
                                 unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
-                                onUnitPackImage();
-
+//                                onUnitPackImage();//commented by shekhar
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
 
                             } else if (resId == FEnumerations.REQUEST_FOR_MASTER_PACKING_ATTACHMENT) {
 //                                workmanshipImage3.setImageBitmap(deviceBitmap);
@@ -7313,8 +7303,10 @@ public class ItemInspectionDetail extends AppCompatActivity
 //                                        workManShipModel.listImages.add(stringImage2);
                                 packagePoItemDetalDetail.masterPackingAttachmentList.addAll(imagePathArrayList);
                                 masterAttachmentCount.setText("" + packagePoItemDetalDetail.masterPackingAttachmentList.size());
-                                onMasterPackImage();
-
+//                                onMasterPackImage();//commented by shekhar
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
 
                             } else if (resId == FEnumerations.REQUEST_FOR_PALLET_PACKING_ATTACHMENT) {
 //                                workmanshipImage3.setImageBitmap(deviceBitmap);
@@ -7323,7 +7315,10 @@ public class ItemInspectionDetail extends AppCompatActivity
 //                                        workManShipModel.listImages.add(stringImage2);
                                 packagePoItemDetalDetail.palletPackingAttachmentList.addAll(imagePathArrayList);
                                 palletAttachmentCount.setText("" + packagePoItemDetalDetail.palletPackingAttachmentList.size());
-                                onPalletPackImage();
+//                                onPalletPackImage();//commented by shekhar
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
 
 
                             }/* else if (resId == FEnumerations.REQUEST_FOR_QUALITY_PARAMETER_ATTACHMENT) {
@@ -7366,10 +7361,17 @@ public class ItemInspectionDetail extends AppCompatActivity
                                 if (internalTestAdaptor != null) {
                                     internalTestAdaptor.notifyDataSetChanged();
                                 }
-                                onInternalTestSelectImage();
+                                if(!isGallery){
+                                    onInternalTestSelectImage();
+                                }
+
                             } else if (resId == FEnumerations.REQUEST_FOR_UNIT_PKG_APP_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Unit pack appearance");
+                                unitPkgAppAttachmentCount.setText("" + imagePathArrayList.size());
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
@@ -7377,63 +7379,95 @@ public class ItemInspectionDetail extends AppCompatActivity
                             } else if (resId == FEnumerations.REQUEST_FOR_SHIPPING_PKG_APP_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Shipping pack appearance");
+                                shippingPkgAppAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             } else if (resId == FEnumerations.REQUEST_FOR_INNER_PKG_APP_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Inner pack appearance");
+                                innerPkgAppAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             } else if (resId == FEnumerations.REQUEST_FOR_MASTER_PKG_APP_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Master pack appearance");
+                                masterPkgAppAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             } else if (resId == FEnumerations.REQUEST_FOR_PALLET_PKG_APP_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Pallet pack appearance");
+                                palletPkgAppAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_UNIT_BARCODE_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Unit Barcode");
+                                unitBarcodeAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_INNER_BARCODE_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Inner Barcode");
+                                innerBarcodeAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_MASTER_BARCODE_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Master Barcode");
+                                masterBarcodeAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_PALLET_BARCODE_ATTACHMENT) {//created by shekhar
 
                                 addASDigitalPkgAppear(imagePathArrayList, "Pallet Barcode");
+                                palletBarcodeAttachmentCount.setText("" + imagePathArrayList.size());
                                 //need to set the image count
 //                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
 //                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
 //                                onUnitPackageAppearImage();
+                                if(!isGallery){
+                                    againOpen(valueReturned);
+                                }
                             }
                         }
                     });
