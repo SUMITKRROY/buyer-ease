@@ -3379,13 +3379,14 @@ public class ItemInspectionDetail extends AppCompatActivity
 
 
 
-        private void updateBarcodeUI() {
+    private void updateBarcodeUI() {
 
         if (packagePoItemDetalDetail.IPQty > 0) {
             findViewById(R.id.barcodeInnerPackingCv).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.barcodeInnerPackingCv).setVisibility(View.GONE);
         }
+
         if (packagePoItemDetalDetail.OPQty > 0) {
             findViewById(R.id.barcodeMasterPackingCv).setVisibility(View.VISIBLE);
         } else {
@@ -3396,6 +3397,64 @@ public class ItemInspectionDetail extends AppCompatActivity
         } else {
             findViewById(R.id.barcodePalletPackingCv).setVisibility(View.GONE);
         }
+
+        // Update barcode attachment counts and add click listeners
+        if (packagePoItemDetalDetail.unitBarcodeAttachmentList != null && packagePoItemDetalDetail.unitBarcodeAttachmentList.size() > 0) {
+            unitBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.unitBarcodeAttachmentList.size());
+            unitBarcodeAttachmentCount.setVisibility(View.VISIBLE);
+        } else {
+            unitBarcodeAttachmentCount.setVisibility(View.GONE);
+        }
+
+        if (packagePoItemDetalDetail.innerBarcodeAttachmentList != null && packagePoItemDetalDetail.innerBarcodeAttachmentList.size() > 0) {
+            innerBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.innerBarcodeAttachmentList.size());
+            innerBarcodeAttachmentCount.setVisibility(View.VISIBLE);
+        } else {
+            innerBarcodeAttachmentCount.setVisibility(View.GONE);
+        }
+
+        if (packagePoItemDetalDetail.masterBarcodeAttachmentList != null && packagePoItemDetalDetail.masterBarcodeAttachmentList.size() > 0) {
+            masterBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.masterBarcodeAttachmentList.size());
+            masterBarcodeAttachmentCount.setVisibility(View.VISIBLE);
+        } else {
+            masterBarcodeAttachmentCount.setVisibility(View.GONE);
+        }
+
+        if (packagePoItemDetalDetail.palletBarcodeAttachmentList != null && packagePoItemDetalDetail.palletBarcodeAttachmentList.size() > 0) {
+            palletBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.palletBarcodeAttachmentList.size());
+            palletBarcodeAttachmentCount.setVisibility(View.VISIBLE);
+        } else {
+            palletBarcodeAttachmentCount.setVisibility(View.GONE);
+        }
+
+        // Add click listeners to show barcode attachments
+        unitBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handlerToShowAttachment(packagePoItemDetalDetail.unitBarcodeAttachmentList);
+            }
+        });
+
+        innerBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handlerToShowAttachment(packagePoItemDetalDetail.innerBarcodeAttachmentList);
+            }
+        });
+
+        masterBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handlerToShowAttachment(packagePoItemDetalDetail.masterBarcodeAttachmentList);
+            }
+        });
+
+        palletBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handlerToShowAttachment(packagePoItemDetalDetail.palletBarcodeAttachmentList);
+            }
+        });
     }
 
     private void updatePackingUI() {
@@ -7676,14 +7735,13 @@ public class ItemInspectionDetail extends AppCompatActivity
                                 if(!isGallery){
                                     againOpen(valueReturned);
                                 }
-                            }
-                            else if (resId == FEnumerations.REQUEST_FOR_UNIT_BARCODE_ATTACHMENT) {//created by shekhar
-
-                                addASDigitalPkgAppear(imagePathArrayList, "Unit Barcode");
-                                //need to set the image count
-//                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
-//                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
-//                                onUnitPackageAppearImage();
+                                // Update barcode attachment list and count
+                                if (packagePoItemDetalDetail.unitBarcodeAttachmentList == null) {
+                                    packagePoItemDetalDetail.unitBarcodeAttachmentList = new ArrayList<>();
+                                }
+                                packagePoItemDetalDetail.unitBarcodeAttachmentList.addAll(imagePathArrayList);
+                                unitBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.unitBarcodeAttachmentList.size());
+                                unitBarcodeAttachmentCount.setVisibility(View.VISIBLE);
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_INNER_BARCODE_ATTACHMENT) {//created by shekhar
 
@@ -7691,17 +7749,13 @@ public class ItemInspectionDetail extends AppCompatActivity
                                 if(!isGallery){
                                     againOpen(valueReturned);
                                 }
-                            }
-                            else if (resId == FEnumerations.REQUEST_FOR_INNER_BARCODE_ATTACHMENT) {//created by shekhar
-
-                                addASDigitalPkgAppear(imagePathArrayList, "Inner Barcode");
-                                //need to set the image count
-//                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
-//                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
-//                                onUnitPackageAppearImage();
-                                if(!isGallery){
-                                    againOpen(valueReturned);
+                                // Update barcode attachment list and count
+                                if (packagePoItemDetalDetail.innerBarcodeAttachmentList == null) {
+                                    packagePoItemDetalDetail.innerBarcodeAttachmentList = new ArrayList<>();
                                 }
+                                packagePoItemDetalDetail.innerBarcodeAttachmentList.addAll(imagePathArrayList);
+                                innerBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.innerBarcodeAttachmentList.size());
+                                innerBarcodeAttachmentCount.setVisibility(View.VISIBLE);
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_MASTER_BARCODE_ATTACHMENT) {//created by shekhar
 
@@ -7709,10 +7763,13 @@ public class ItemInspectionDetail extends AppCompatActivity
                                 if(!isGallery){
                                     againOpen(valueReturned);
                                 }
-                                //need to set the image count
-//                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
-//                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
-//                                onUnitPackageAppearImage();
+                                // Update barcode attachment list and count
+                                if (packagePoItemDetalDetail.masterBarcodeAttachmentList == null) {
+                                    packagePoItemDetalDetail.masterBarcodeAttachmentList = new ArrayList<>();
+                                }
+                                packagePoItemDetalDetail.masterBarcodeAttachmentList.addAll(imagePathArrayList);
+                                masterBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.masterBarcodeAttachmentList.size());
+                                masterBarcodeAttachmentCount.setVisibility(View.VISIBLE);
                             }
                             else if (resId == FEnumerations.REQUEST_FOR_PALLET_BARCODE_ATTACHMENT) {//created by shekhar
 
@@ -7720,22 +7777,21 @@ public class ItemInspectionDetail extends AppCompatActivity
                                 if(!isGallery){
                                     againOpen(valueReturned);
                                 }
-                            }
-                            else if (resId == FEnumerations.REQUEST_FOR_PALLET_BARCODE_ATTACHMENT) {//created by shekhar
-
-                                addASDigitalPkgAppear(imagePathArrayList, "Pallet Barcode");
-                                //need to set the image count
-//                                packagePoItemDetalDetail.unitPackingAttachmentList.addAll(imagePathArrayList);
-//                                unitAttachmentCount.setText("" + packagePoItemDetalDetail.unitPackingAttachmentList.size());
-//                                onUnitPackageAppearImage();
-                                if(!isGallery){
-                                    againOpen(valueReturned);
+                                // Update barcode attachment list and count
+                                if (packagePoItemDetalDetail.palletBarcodeAttachmentList == null) {
+                                    packagePoItemDetalDetail.palletBarcodeAttachmentList = new ArrayList<>();
                                 }
+                                packagePoItemDetalDetail.palletBarcodeAttachmentList.addAll(imagePathArrayList);
+                                palletBarcodeAttachmentCount.setText("" + packagePoItemDetalDetail.palletBarcodeAttachmentList.size());
+                                palletBarcodeAttachmentCount.setVisibility(View.VISIBLE);
                             }
                         }
                     });
 
-        } /*else {
+        }
+
+
+        /*else {
             PhotoHandler.onActivityResult(ItemInspectionDetail.this,
                     requestCode, resultCode, data, new PhotoHandler.GetBitmap() {
                         @Override

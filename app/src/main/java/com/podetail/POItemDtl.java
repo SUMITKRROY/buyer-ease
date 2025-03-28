@@ -138,6 +138,12 @@ public class POItemDtl {
     public ArrayList<String> masterPackingAttachmentList = new ArrayList<>();
     public ArrayList<String> palletPackingAttachmentList = new ArrayList<>();
 
+    // Add barcode attachment lists
+    public ArrayList<String> unitBarcodeAttachmentList = new ArrayList<>();
+    public ArrayList<String> innerBarcodeAttachmentList = new ArrayList<>();
+    public ArrayList<String> masterBarcodeAttachmentList = new ArrayList<>();
+    public ArrayList<String> palletBarcodeAttachmentList = new ArrayList<>();
+
     public double PKG_Me_Inner_FindingL,
             PKG_Me_Inner_FindingB,
             PKG_Me_Inner_FindingH,
