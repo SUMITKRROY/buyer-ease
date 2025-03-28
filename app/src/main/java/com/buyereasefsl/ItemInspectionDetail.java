@@ -95,8 +95,7 @@ public class ItemInspectionDetail extends AppCompatActivity
             masterPackingIPkgAppImagePicker, palletPackingIPkgAppImagePicker;
 
     ImageView palletBarcodeImagePicker,masterBarcodeImagePicker,innerBarcodeImagePicker,unitBarcodeImagePicker;
-    TextView  unitBarcodeAttachmentCount,innerBarcodeAttachmentCount,masterBarcodeAttachmentCount,palletBarcodeAttachmentCount;
-    TextView unitAttachmentCount, innerAttachmentCount, masterAttachmentCount, palletAttachmentCount;
+    TextView  unitBarcodeAttachmentCount,innerBarcodeAttachmentCount,masterBarcodeAttachmentCount,palletBarcodeAttachmentCount;    TextView unitAttachmentCount, innerAttachmentCount, masterAttachmentCount, palletAttachmentCount;
     TextView unitPkgAppAttachmentCount, shippingPkgAppAttachmentCount, innerPkgAppAttachmentCount,
             masterPkgAppAttachmentCount, palletPkgAppAttachmentCount;
     Spinner spinnerOverAllResult, spinnerMasterPackingOverAllResult, spinnerInnerPackingOverAllResult,
@@ -3022,7 +3021,7 @@ public class ItemInspectionDetail extends AppCompatActivity
         unitBarcodeAttachmentCount = (TextView) findViewById(R.id.unitBarcodeAttachmentCount);
         innerBarcodeAttachmentCount = (TextView) findViewById(R.id.innerBarcodeAttachmentCount);
         masterBarcodeAttachmentCount = (TextView) findViewById(R.id.masterBarcodeAttachmentCount);
-        palletBarcodeAttachmentCount = (TextView) findViewById(R.id.unitBarcodeAttachmentCount);
+        palletBarcodeAttachmentCount = (TextView) findViewById(R.id.palletBarcodeAttachmentCount);
 
         unitPkgAppAttachmentCount = (TextView) findViewById(R.id.unitPkgAppAttachmentCount);
         shippingPkgAppAttachmentCount = (TextView) findViewById(R.id.shippingPkgAppAttachmentCount);
@@ -3164,41 +3163,36 @@ public class ItemInspectionDetail extends AppCompatActivity
         masterAttachmentCount.setOnClickListener(this);
         palletAttachmentCount.setOnClickListener(this);
 
-        // Add click listeners for packaging appearance counts
-        unitPkgAppAttachmentCount.setOnClickListener(new View.OnClickListener() {
+
+        // Add click listeners for barcode attachment count TextViews
+        unitBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handlerToShowAttachment(pOItemPkgAppDetail.unitPkgAppAttachmentList);
+                handlerToShowAttachment(packagePoItemDetalDetail.unitBarcodeAttachmentList);
             }
         });
 
-        shippingPkgAppAttachmentCount.setOnClickListener(new View.OnClickListener() {
+        innerBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handlerToShowAttachment(pOItemPkgAppDetail.shippingPkgAppAttachmentList);
+                handlerToShowAttachment(packagePoItemDetalDetail.innerBarcodeAttachmentList);
             }
         });
 
-        innerPkgAppAttachmentCount.setOnClickListener(new View.OnClickListener() {
+        masterBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handlerToShowAttachment(pOItemPkgAppDetail.innerPkgAppAttachmentList);
+                handlerToShowAttachment(packagePoItemDetalDetail.masterBarcodeAttachmentList);
             }
         });
 
-        masterPkgAppAttachmentCount.setOnClickListener(new View.OnClickListener() {
+        palletBarcodeAttachmentCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handlerToShowAttachment(pOItemPkgAppDetail.masterPkgAppAttachmentList);
+                handlerToShowAttachment(packagePoItemDetalDetail.palletBarcodeAttachmentList);
             }
         });
 
-        palletPkgAppAttachmentCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handlerToShowAttachment(pOItemPkgAppDetail.palletPkgAppAttachmentList);
-            }
-        });
 
         updatePackingUI();
 
